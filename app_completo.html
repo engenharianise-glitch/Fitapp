@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>FitApp - Treino & Nutrição</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1e3a62">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  </style>
+</head>
+<body class="bg-slate-100 min-h-screen text-slate-800 antialiased font-sans pb-10">
+
+  <!-- ========================================== -->
+  <!-- TELA 1: ABERTURA / HOME HUB -->
+  <!-- ========================================== -->
+  <div id="telaHome" class="min-h-screen flex flex-col justify-between p-6 max-w-md mx-auto">
+    <!-- Header Boas-Vindas -->
+    <div class="pt-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold mb-4">
+        <span>⚡</span> Antigravity Health & Fitness
+      </div>
+      <h1 class="text-3xl font-black text-slate-900 tracking-tight">O que vamos evoluir hoje?</h1>
+      <p class="text-slate-500 text-sm mt-1">Selecione o módulo para acompanhar seu plano</p>
+    </div>
+
+    <!-- Botões / Cards Grandes de Entrada -->
+    <div class="space-y-4 my-8">
+      <!-- Card: Plano de Treino -->
+      <button type="button" onclick="navegarPara('telaTreino')"
+              class="w-full text-left bg-gradient-to-br from-[#1e3a62] to-[#2c4e7e] text-white p-6 rounded-3xl shadow-lg shadow-blue-900/20 active:scale-98 transition-all border border-blue-400/20 flex items-center justify-between group">
+        <div>
+          <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+            🏋️‍♂️
+          </div>
+          <h2 class="text-xl font-bold">Plano de Treino</h2>
+          <p class="text-xs text-blue-200 mt-1">Agenda por data, exercícios e sobrecarga de cargas</p>
+        </div>
+        <span class="text-2xl text-blue-300 font-light pr-2">➔</span>
+      </button>
+
+      <!-- Card: Plano de Nutrição -->
+      <button type="button" onclick="navegarPara('telaNutricao')"
+              class="w-full text-left bg-gradient-to-br from-emerald-700 to-teal-800 text-white p-6 rounded-3xl shadow-lg shadow-emerald-900/20 active:scale-98 transition-all border border-emerald-400/20 flex items-center justify-between group">
+        <div>
+          <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+            🥗
+          </div>
+          <h2 class="text-xl font-bold">Plano de Nutrição</h2>
+          <p class="text-xs text-emerald-200 mt-1">Diário de refeições, metas diárias e hidratação</p>
+        </div>
+        <span class="text-2xl text-emerald-300 font-light pr-2">➔</span>
+      </button>
+    </div>
+
+    <!-- Rodapé Status Supabase -->
+    <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs text-xs text-slate-500 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span id="indicadorStatus" class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span id="textoStatus">Banco Supabase Conectado</span>
+      </div>
+      <button type="button" onclick="abrirConfigModal()" class="text-blue-600 font-bold hover:underline">Configurar API</button>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- TELA 2: MÓDULO DE TREINOS COM AGENDA -->
+  <!-- ========================================== -->
+  <div id="telaTreino" class="hidden min-h-screen pb-24">
+    <!-- Top Bar Treinos -->
+    <header class="sticky top-0 z-30 bg-[#1e3a62] text-white px-4 py-3 shadow-md flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="navegarPara('telaHome')" class="text-lg p-1 text-blue-200 active:scale-90">⬅</button>
+        <div>
+          <h1 class="text-base font-bold">Controle de Treinos</h1>
+          <p class="text-xs text-blue-200" id="contadorExercicios">2 exercícios</p>
+        </div>
+      </div>
+
+      <!-- Ajuste da Progressão -->
+      <div class="flex items-center gap-1 bg-[#2a4e80] px-2.5 py-1 rounded-xl border border-blue-400/30">
+        <span class="text-xs font-bold text-slate-200">+</span>
+        <input type="number" id="porcentagem" value="5" step="0.5" 
+               class="w-7 bg-transparent text-center font-bold text-emerald-400 focus:outline-none text-sm">
+        <span class="text-xs font-bold text-emerald-400">%</span>
+      </div>
+    </header>
+
+    <main class="max-w-md mx-auto p-4 space-y-4">
+      <!-- AGENDA: Seletor de Data e Dias -->
+      <section class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/80 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500">📅 Agenda do Treino</span>
+          <input type="date" id="dataTreino" class="text-sm font-semibold text-slate-700 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1 focus:outline-none">
+        </div>
+
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">Frequência Semanal</span>
+          <div class="grid grid-cols-7 gap-1 text-center">
+            <label class="cursor-pointer"><input type="checkbox" checked class="peer hidden dia-check"><span class="block py-2 rounded-xl text-xs font-bold text-slate-600 bg-slate-100 peer-checked:bg-blue-600 peer-checked:text-white transition-all">Seg</span></label>
+            <label class="cursor-pointer"><input type="checkbox" class="peer hidden dia-check"><span class="block py-2 rounded-xl text-xs font-bold text-slate-600 bg-slate-100 peer-checked:bg-blue-600 peer-checked:text-white transition-all">Ter</span></label>
+            <label class="cursor-pointer"><input type="checkbox" class="peer hidden dia-check"><span class="block py-2 rounded-xl text-xs font-bold text-slate-600 bg-slate-100 peer-checked:bg-blue-600 peer-checked:text-white transition-all">Qua</span></label>
+            <label class="cursor-pointer"><input type="checkbox" checked class="peer hidden dia-check"><span class="block py-2 rounded-xl text-xs font-bold text-slate-600 bg-slate-100 peer-checked:bg-blue-600 peer-checked:text-white transition-all">Qui</span></label>
+            <label class="cursor-pointer"><input type="checkbox" class="peer hidden dia-check"><span class="block py-2 rounded-xl text-xs font-bold text-slate-600 bg-slate-100 peer-checked:bg-blue-600 peer-checked:text-white transition-all">Sex</span></label>
+            <label class="cursor-pointer"><input type="checkbox" class="peer hidden dia-check"><span class="block py-2 rounded-xl text-xs font-bold text-slate-600 bg-slate-100 peer-checked:bg-blue-600 peer-checked:text-white transition-all">Sáb</span></label>
+            <label class="cursor-pointer"><input type="checkbox" class="peer hidden dia-check"><span class="block py-2 rounded-xl text-xs font-bold text-slate-600 bg-slate-100 peer-checked:bg-blue-600 peer-checked:text-white transition-all">Dom</span></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lista Dinâmica de Cards de Exercícios -->
+      <div id="listaExercicios" class="space-y-3">
+        <!-- Card 1 -->
+        <div class="card-exercicio bg-white rounded-2xl p-4 shadow-sm border border-slate-200/80">
+          <div class="flex items-center justify-between gap-2 border-b border-slate-100 pb-2 mb-3">
+            <input type="text" value="Supino inclinado" class="nome-exercicio w-full font-bold text-slate-800 text-base bg-transparent focus:outline-none">
+            <button type="button" class="btn-remover text-slate-400 hover:text-red-500 p-1 text-sm font-bold">✕</button>
+          </div>
+          <div class="grid grid-cols-2 gap-3 mb-3">
+            <div>
+              <label class="text-[10px] font-bold text-slate-400 uppercase">Séries x Reps</label>
+              <input type="text" value="3 x 10" class="reps-exercicio w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-sm font-semibold text-slate-700 focus:outline-none">
+            </div>
+            <div>
+              <label class="text-[10px] font-bold text-slate-400 uppercase">Carga Atual</label>
+              <div class="relative flex items-center">
+                <input type="number" step="0.5" value="40" inputmode="decimal" class="input-carga w-full bg-slate-50 border border-slate-200 rounded-xl pl-3 pr-8 py-1.5 text-sm font-bold text-slate-800 focus:outline-none">
+                <span class="absolute right-3 text-xs text-slate-400">kg</span>
+              </div>
+            </div>
+          </div>
+          <div class="bg-emerald-50 border border-emerald-200/80 rounded-xl p-2.5 flex items-center justify-between">
+            <span class="text-xs text-emerald-800 font-medium">Próxima meta: <b class="resultado-carga text-emerald-700">42</b> kg</span>
+            <span class="badge-pct bg-emerald-600 text-white text-[10px] font-black px-2 py-0.5 rounded">+5%</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Botão Flutuante (FAB) Adicionar Exercício -->
+    <button type="button" id="fabAddTreino" 
+            class="fixed bottom-6 right-6 z-40 bg-blue-600 text-white w-14 h-14 rounded-2xl shadow-xl flex items-center justify-center text-3xl font-light active:scale-90 transition-all border border-white/20">
+      +
+    </button>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- TELA 3: MÓDULO DE NUTRIÇÃO -->
+  <!-- ========================================== -->
+  <div id="telaNutricao" class="hidden min-h-screen pb-24">
+    <header class="sticky top-0 z-30 bg-emerald-800 text-white px-4 py-3 shadow-md flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="navegarPara('telaHome')" class="text-lg p-1 text-emerald-200 active:scale-90">⬅</button>
+        <div>
+          <h1 class="text-base font-bold">Plano de Nutrição</h1>
+          <p class="text-xs text-emerald-200">Diário Alimentar</p>
+        </div>
+      </div>
+      <span class="text-xs bg-emerald-900/60 px-2.5 py-1 rounded-lg border border-emerald-500/30 font-semibold">Hoje</span>
+    </header>
+
+    <main class="max-w-md mx-auto p-4 space-y-4">
+      <!-- Contador de Água / Hidratação -->
+      <section class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/80 flex items-center justify-between">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block">💧 Hidratação</span>
+          <span class="text-2xl font-black text-blue-600" id="contadorAgua">0</span> <span class="text-xs text-slate-400">/ 8 copos (2.0L)</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="alterarAgua(-1)" class="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 font-bold active:scale-90 text-lg">-</button>
+          <button type="button" onclick="alterarAgua(1)" class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold active:scale-90 text-lg shadow">+</button>
+        </div>
+      </section>
+
+      <!-- Refeições Diárias -->
+      <section class="space-y-3">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 px-1">Refeições Programadas</h3>
+
+        <!-- Café da Manhã -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/80">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-bold text-slate-800 text-sm">☕ Café da Manhã</span>
+            <span class="text-xs text-slate-400">07:30</span>
+          </div>
+          <textarea rows="2" placeholder="Ex: 3 ovos mexidos, 2 fatias de pão integral, café preto..." 
+                    class="w-full text-xs text-slate-700 bg-slate-50 border border-slate-200 rounded-xl p-2.5 focus:outline-none"></textarea>
+        </div>
+
+        <!-- Almoço -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/80">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-bold text-slate-800 text-sm">🍛 Almoço</span>
+            <span class="text-xs text-slate-400">12:30</span>
+          </div>
+          <textarea rows="2" placeholder="Ex: 150g frango grelhado, 150g arroz, salada à vontade..." 
+                    class="w-full text-xs text-slate-700 bg-slate-50 border border-slate-200 rounded-xl p-2.5 focus:outline-none"></textarea>
+        </div>
+
+        <!-- Lanche / Pré-treino -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/80">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-bold text-slate-800 text-sm">🍎 Lanche da Tarde</span>
+            <span class="text-xs text-slate-400">16:30</span>
+          </div>
+          <textarea rows="2" placeholder="Ex: 1 maçã + 30g Whey protein ou iogurte natural..." 
+                    class="w-full text-xs text-slate-700 bg-slate-50 border border-slate-200 rounded-xl p-2.5 focus:outline-none"></textarea>
+        </div>
+
+        <!-- Jantar -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/80">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-bold text-slate-800 text-sm">🥗 Jantar</span>
+            <span class="text-xs text-slate-400">20:30</span>
+          </div>
+          <textarea rows="2" placeholder="Ex: Patinho moído, batata inglesa cozida, legumes no vapor..." 
+                    class="w-full text-xs text-slate-700 bg-slate-50 border border-slate-200 rounded-xl p-2.5 focus:outline-none"></textarea>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Script de Navegação e Lógica -->
+  <script>
+    // Navegação simples entre telas
+    function navegarPara(idTela) {
+      document.getElementById('telaHome').classList.add('hidden');
+      document.getElementById('telaTreino').classList.add('hidden');
+      document.getElementById('telaNutricao').classList.add('hidden');
+      document.getElementById(idTela).classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    // Controle de Água
+    let copos = 0;
+    function alterarAgua(delta) {
+      copos = Math.max(0, copos + delta);
+      document.getElementById('contadorAgua').textContent = copos;
+    }
+
+    // Inicializa a data atual
+    document.getElementById('dataTreino').valueAsDate = new Date();
+
+    // Recalcular cargas do Treino
+    function recalcularTreino() {
+      const pct = parseFloat(document.getElementById('porcentagem').value) / 100 || 0;
+      const cards = document.querySelectorAll('.card-exercicio');
+      cards.forEach(card => {
+        const input = card.querySelector('.input-carga');
+        const output = card.querySelector('.resultado-carga');
+        const badge = card.querySelector('.badge-pct');
+        if (input && output) {
+          const v = parseFloat(input.value);
+          output.textContent = (!isNaN(v) && v > 0) ? (Math.round(v * (1 + pct) * 10) / 10).toString().replace('.', ',') : '--';
+        }
+        if (badge) badge.textContent = `+${document.getElementById('porcentagem').value}%`;
+      });
+      document.getElementById('contadorExercicios').textContent = `${cards.length} exercícios`;
+    }
+
+    document.getElementById('telaTreino').addEventListener('input', recalcularTreino);
+
+    // Adicionar Exercício
+    document.getElementById('fabAddTreino').addEventListener('click', () => {
+      const div = document.createElement('div');
+      div.className = 'card-exercicio bg-white rounded-2xl p-4 shadow-sm border border-slate-200/80';
+      div.innerHTML = `
+        <div class="flex items-center justify-between gap-2 border-b border-slate-100 pb-2 mb-3">
+          <input type="text" placeholder="Nome do novo exercício" class="nome-exercicio w-full font-bold text-slate-800 text-base bg-transparent focus:outline-none">
+          <button type="button" class="btn-remover text-slate-400 hover:text-red-500 p-1 text-sm font-bold">✕</button>
+        </div>
+        <div class="grid grid-cols-2 gap-3 mb-3">
+          <div>
+            <label class="text-[10px] font-bold text-slate-400 uppercase">Séries x Reps</label>
+            <input type="text" value="3 x 10" class="reps-exercicio w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-sm font-semibold text-slate-700 focus:outline-none">
+          </div>
+          <div>
+            <label class="text-[10px] font-bold text-slate-400 uppercase">Carga Atual</label>
+            <div class="relative flex items-center">
+              <input type="number" step="0.5" value="0" inputmode="decimal" class="input-carga w-full bg-slate-50 border border-slate-200 rounded-xl pl-3 pr-8 py-1.5 text-sm font-bold text-slate-800 focus:outline-none">
+              <span class="absolute right-3 text-xs text-slate-400">kg</span>
+            </div>
+          </div>
+        </div>
+        <div class="bg-emerald-50 border border-emerald-200/80 rounded-xl p-2.5 flex items-center justify-between">
+          <span class="text-xs text-emerald-800 font-medium">Próxima meta: <b class="resultado-carga text-emerald-700">--</b> kg</span>
+          <span class="badge-pct bg-emerald-600 text-white text-[10px] font-black px-2 py-0.5 rounded">+${document.getElementById('porcentagem').value}%</span>
+        </div>
+      `;
+      document.getElementById('listaExercicios').appendChild(div);
+      recalcularTreino();
+      div.querySelector('input').focus();
+    });
+
+    // Remover Exercício
+    document.getElementById('listaExercicios').addEventListener('click', (e) => {
+      if (e.target.classList.contains('btn-remover')) {
+        e.target.closest('.card-exercicio').remove();
+        recalcularTreino();
+      }
+    });
+
+    // Registra Service Worker para instalação no Android
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    }
+
+    recalcularTreino();
+  </script>
+</body>
+</html>
