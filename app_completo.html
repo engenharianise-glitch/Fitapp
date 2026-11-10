@@ -10,16 +10,18 @@
   <meta name="theme-color" content="#0b132b">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { background-color: #0b132b; color: #e2e8f0; }
+    body { background-color: #0b132b; color: #e2e8f0; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
     input[type=number]::-webkit-inner-spin-button, 
     input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
     .card-dark { background-color: #131f3f; border: 1px solid #1e2d5a; }
+    .card-glass { background-color: rgba(19, 31, 63, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.2); }
     .input-dark { background-color: #0d172e; border: 1px solid #223468; color: #f8fafc; }
     .input-dark:focus { border-color: #3b82f6; outline: none; }
     .preset-active { background-color: #f59e0b !important; color: #020617 !important; border-color: #fbbf24 !important; font-weight: 900 !important; }
+    .tab-active { color: #f59e0b !important; border-color: #f59e0b !important; }
   </style>
 </head>
-<body class="min-h-screen text-slate-100 antialiased font-sans pb-16">
+<body class="min-h-screen text-slate-100 antialiased font-sans pb-24">
 
   <!-- ========================================== -->
   <!-- TELA DE ABERTURA (SPLASH SCREEN GIGANTE) -->
@@ -27,7 +29,7 @@
   <div id="splashScreen" class="fixed inset-0 z-50 bg-[#0b132b] flex flex-col items-center justify-center p-6 transition-opacity duration-700 select-none">
     <div class="text-center max-w-xl mx-auto">
       <div class="relative inline-block mb-6 animate-pulse">
-        <img src="./logo_emblema.jpg?v=5" alt="FitApp Don't Give Up" 
+        <img src="./logo_emblema.jpg?v=6" alt="FitApp Don't Give Up" 
              class="w-72 h-72 sm:w-96 sm:h-96 md:w-[460px] md:h-[460px] mx-auto rounded-3xl md:rounded-[48px] shadow-2xl border-4 border-amber-400/80 object-cover">
         <span class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-sm sm:text-xl font-black px-8 py-2 rounded-full shadow-2xl tracking-widest uppercase whitespace-nowrap">
           DON'T GIVE UP
@@ -41,25 +43,43 @@
     </div>
   </div>
 
+  <!-- ========================================== -->
+  <!-- MODAL DE PARABÉNS / CELEBRAÇÃO (STREAK) -->
+  <!-- ========================================== -->
+  <div id="modalParabens" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="card-glass max-w-md w-full p-6 sm:p-8 rounded-3xl text-center border-2 border-amber-400 shadow-2xl animate-bounce-short">
+      <div class="text-5xl sm:text-6xl mb-3">🏆</div>
+      <h2 class="text-2xl sm:text-3xl font-black text-amber-400 uppercase">TREINO CONCLUÍDO!</h2>
+      <p class="text-slate-200 text-sm sm:text-base mt-2 font-bold" id="parabensMensagem">Você movimentou todas as cargas planejadas para hoje!</p>
+      <div class="bg-amber-500/10 border border-amber-500/40 rounded-2xl p-4 my-4">
+        <span class="text-xs text-amber-300 font-extrabold uppercase tracking-wider block">Lema do Campeão</span>
+        <span class="text-lg sm:text-xl font-black text-white block mt-1">"DON'T GIVE UP"</span>
+      </div>
+      <button type="button" onclick="fecharModalParabens()" 
+              class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-base rounded-xl shadow-lg active:scale-95 transition-all">
+        Continuar Vencendo ➔
+      </button>
+    </div>
+  </div>
 
   <!-- ========================================== -->
-  <!-- TELA 1: HOME DE ENTRADA (TREINO vs NUTRIÇÃO) -->
+  <!-- TELA 1: HOME DE ENTRADA -->
   <!-- ========================================== -->
   <div id="telaHome" class="min-h-screen flex flex-col justify-between p-4 sm:p-8 max-w-2xl md:max-w-3xl mx-auto">
     
-    <!-- Hero com Logo Oficial e Slogan Aumentado GIGANTE -->
-    <div class="pt-4 sm:pt-10 text-center">
-      <div class="relative inline-block mb-6 sm:mb-8">
-        <img src="./logo_emblema.jpg?v=5" alt="Logo FitApp Don't Give Up" 
-             class="w-72 h-72 sm:w-96 sm:h-96 md:w-[440px] md:h-[440px] mx-auto rounded-3xl md:rounded-[48px] shadow-2xl border-4 border-amber-400/80 object-cover">
-        <span class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-sm sm:text-xl font-black px-8 py-2 rounded-full shadow-2xl tracking-widest uppercase whitespace-nowrap">
+    <!-- Hero com Logo Oficial e Slogan Aumentado -->
+    <div class="pt-2 sm:pt-6 text-center">
+      <div class="relative inline-block mb-4 sm:mb-6">
+        <img src="./logo_emblema.jpg?v=6" alt="Logo FitApp Don't Give Up" 
+             class="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 mx-auto rounded-3xl md:rounded-[44px] shadow-2xl border-4 border-amber-400/80 object-cover">
+        <span class="absolute -bottom-3.5 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-xs sm:text-base md:text-lg font-black px-6 py-1.5 rounded-full shadow-2xl tracking-wider uppercase whitespace-nowrap">
           DON'T GIVE UP
         </span>
       </div>
 
-      <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight mt-6">Treino & Nutrição</h1>
-      <p class="text-amber-400 text-base sm:text-2xl font-black tracking-widest mt-2.5 uppercase">FORÇA, DISCIPLINA E COMBUSTÍVEL</p>
-      <p class="text-slate-200 text-sm sm:text-xl font-bold mt-3 sm:mt-4 max-w-2xl mx-auto leading-relaxed">
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mt-3 sm:mt-5">Treino & Nutrição</h1>
+      <p class="text-amber-400 text-sm sm:text-xl md:text-2xl font-black tracking-widest mt-1.5 uppercase">Força, Disciplina e Combustível</p>
+      <p class="text-slate-200 text-xs sm:text-base md:text-lg mt-2 max-w-xl mx-auto leading-relaxed">
         "O corpo é o resultado do treino. A comida é o combustível para vencer."
       </p>
     </div>
@@ -70,7 +90,7 @@
               class="w-full text-left bg-gradient-to-br from-[#18284d] to-[#111c38] hover:from-[#213768] hover:to-[#162347] text-white p-5 sm:p-6 rounded-3xl shadow-2xl border-2 border-blue-500/40 active:scale-98 transition-all flex items-center justify-between group">
         <div class="flex items-center gap-4 sm:gap-6">
           <div class="relative flex-shrink-0">
-            <img src="./icone_treino.jpg?v=4" alt="Controle de Treinos" 
+            <img src="./icone_treino.jpg?v=6" alt="Controle de Treinos" 
                  class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border-2 border-amber-400/80 shadow-2xl group-hover:scale-105 transition-transform">
             <span class="absolute -bottom-1 -right-1 bg-blue-600 text-white text-xs w-7 h-7 rounded-full flex items-center justify-center border-2 border-slate-900 shadow">🏋️</span>
           </div>
@@ -86,13 +106,13 @@
               class="w-full text-left bg-gradient-to-br from-[#0e2a22] to-[#111c38] hover:from-[#133a2f] hover:to-[#162347] text-white p-5 sm:p-6 rounded-3xl shadow-2xl border-2 border-emerald-500/40 active:scale-98 transition-all flex items-center justify-between group">
         <div class="flex items-center gap-4 sm:gap-6">
           <div class="relative flex-shrink-0">
-            <img src="./icone_nutricao.jpg?v=4" alt="Plano de Nutrição" 
+            <img src="./icone_nutricao.jpg?v=6" alt="Plano de Nutrição" 
                  class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border-2 border-amber-400/80 shadow-2xl group-hover:scale-105 transition-transform">
             <span class="absolute -bottom-1 -right-1 bg-emerald-600 text-white text-xs w-7 h-7 rounded-full flex items-center justify-center border-2 border-slate-900 shadow">🥗</span>
           </div>
           <div>
             <h2 class="text-lg sm:text-2xl font-black text-white">Plano de Nutrição</h2>
-            <p class="text-xs sm:text-sm text-emerald-200/90 mt-1">Diário alimentar, refeições editáveis e hidratação</p>
+            <p class="text-xs sm:text-sm text-emerald-200/90 mt-1">Refeições livres, metas de macros e hidratação ajustável</p>
           </div>
         </div>
         <span class="text-2xl sm:text-3xl text-emerald-400 font-light pl-3 group-hover:translate-x-2 transition-transform">➔</span>
@@ -105,7 +125,7 @@
         <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
         <span class="text-xs font-semibold">Sistema Sincronizado</span>
       </div>
-      <span class="text-amber-400 font-bold text-xs">FitApp v2.3</span>
+      <span class="text-amber-400 font-bold text-xs">FitApp Pro v3.0</span>
     </div>
   </div>
 
@@ -114,14 +134,14 @@
   <!-- ========================================== -->
   <div id="telaTreino" class="hidden max-w-5xl mx-auto p-3 sm:p-5 space-y-4">
 
-    <!-- Topo -->
+    <!-- Topo com Wake Lock (Manter Tela Acesa) -->
     <header class="flex items-center justify-between py-1 border-b border-slate-800/80 pb-3">
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 sm:gap-3">
         <button type="button" onclick="navegarPara('telaHome')" class="text-xs sm:text-sm bg-[#131f3f] hover:bg-[#1a2b56] px-3.5 py-2 rounded-xl border border-slate-700 text-blue-300 font-bold flex items-center gap-1.5 active:scale-95 shadow">
           ⬅ Início
         </button>
-        <div class="flex items-center gap-2.5">
-          <img src="./icone_treino.jpg?v=4" alt="Treino" class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl border border-amber-400/70 object-cover shadow">
+        <div class="flex items-center gap-2">
+          <img src="./icone_treino.jpg?v=6" alt="Treino" class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl border border-amber-400/70 object-cover shadow">
           <div>
             <h1 class="text-base sm:text-xl font-black text-white leading-tight">Controle de Treinos</h1>
             <span class="text-[10px] sm:text-xs text-amber-400 font-extrabold tracking-wider">DON'T GIVE UP</span>
@@ -129,23 +149,32 @@
         </div>
       </div>
 
-      <div class="bg-[#131f3f] px-3 py-1.5 rounded-xl border border-slate-700 flex items-center gap-1.5 shadow">
-        <span class="text-xs font-bold text-slate-300">Sobrecarga:</span>
-        <input type="number" id="porcentagem" value="3" step="0.5" 
-               class="w-10 bg-transparent text-center font-black text-emerald-400 focus:outline-none text-base sm:text-lg">
-        <span class="font-black text-emerald-400 text-sm">%</span>
+      <div class="flex items-center gap-2">
+        <!-- Botão Manter Tela Acesa (Wake Lock) -->
+        <button type="button" id="btnWakeLock" onclick="toggleWakeLock()" 
+                class="px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl border border-slate-700 bg-[#131f3f] text-slate-300 text-xs font-bold flex items-center gap-1 shadow active:scale-95">
+          <span id="wakeLockIcon">💡</span> <span class="hidden sm:inline" id="wakeLockText">Tela Acesa: OFF</span>
+        </button>
+
+        <!-- Sobrecarga % -->
+        <div class="bg-[#131f3f] px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl border border-slate-700 flex items-center gap-1 shadow">
+          <span class="text-xs font-bold text-slate-300">Sobrecarga:</span>
+          <input type="number" id="porcentagem" value="3" step="0.5" 
+                 class="w-9 bg-transparent text-center font-black text-emerald-400 focus:outline-none text-base">
+          <span class="font-black text-emerald-400 text-xs">%</span>
+        </div>
       </div>
     </header>
 
-    <!-- Dias da Semana -->
+    <!-- Dias da Semana com Indicador de Concluído (Streaks) -->
     <div class="card-dark rounded-xl p-1.5 flex gap-1 justify-between overflow-x-auto shadow" id="seletorDias">
-      <button type="button" class="dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg bg-blue-600 text-white shadow transition-all">Seg</button>
-      <button type="button" class="dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg text-slate-400 hover:text-white transition-all">Ter</button>
-      <button type="button" class="dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg text-slate-400 hover:text-white transition-all">Qua</button>
-      <button type="button" class="dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg text-slate-400 hover:text-white transition-all">Qui</button>
-      <button type="button" class="dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg text-slate-400 hover:text-white transition-all">Sex</button>
-      <button type="button" class="dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg text-slate-400 hover:text-white transition-all">Sáb</button>
-      <button type="button" class="dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg text-slate-400 hover:text-white transition-all">Dom</button>
+      <button type="button" onclick="selecionarDia('Seg')" class="dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg bg-blue-600 text-white shadow transition-all flex items-center justify-center gap-1">Seg <span class="dia-streak hidden text-amber-300 text-xs">★</span></button>
+      <button type="button" onclick="selecionarDia('Ter')" class="dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1">Ter <span class="dia-streak hidden text-amber-300 text-xs">★</span></button>
+      <button type="button" onclick="selecionarDia('Qua')" class="dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1">Qua <span class="dia-streak hidden text-amber-300 text-xs">★</span></button>
+      <button type="button" onclick="selecionarDia('Qui')" class="dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1">Qui <span class="dia-streak hidden text-amber-300 text-xs">★</span></button>
+      <button type="button" onclick="selecionarDia('Sex')" class="dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1">Sex <span class="dia-streak hidden text-amber-300 text-xs">★</span></button>
+      <button type="button" onclick="selecionarDia('Sab')" class="dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1">Sáb <span class="dia-streak hidden text-amber-300 text-xs">★</span></button>
+      <button type="button" onclick="selecionarDia('Dom')" class="dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1">Dom <span class="dia-streak hidden text-amber-300 text-xs">★</span></button>
     </div>
 
     <!-- Abas: Treino A vs Treino B -->
@@ -160,7 +189,7 @@
       </button>
     </div>
 
-    <!-- Barra de Volume & Timer Lado a Lado (Otimizado sem desperdício de espaço) -->
+    <!-- Barra de Volume & Timer Lado a Lado (Otimizado) -->
     <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-stretch">
       
       <!-- Bloco de Volume (5 colunas) -->
@@ -181,12 +210,12 @@
       <!-- Bloco de Timer (7 colunas) -->
       <div class="md:col-span-7 card-dark rounded-xl p-3 sm:p-4 border border-amber-500/40 shadow flex flex-col justify-between bg-gradient-to-br from-[#131f3f] to-[#0f172e]">
         <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-1.5">
             <span class="text-lg">⏱️</span>
             <span class="text-xs font-bold text-amber-400 uppercase">Descanso</span>
           </div>
           <!-- Display Grande do Timer -->
-          <span class="text-3xl sm:text-4xl font-mono font-black text-amber-400" id="timerDisplay">01:00</span>
+          <span class="text-3xl sm:text-4xl font-mono font-black text-amber-400 drop-shadow" id="timerDisplay">01:00</span>
           <!-- Controles Rápidos -->
           <div class="flex items-center gap-1">
             <button type="button" onclick="iniciarTimer()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-black text-xs rounded-lg active:scale-95 shadow">▶ Iniciar</button>
@@ -219,7 +248,7 @@
       </div>
     </div>
 
-    <!-- Lista de Exercícios (Aproveitando 100% da largura, sem altura vazia exagerada) -->
+    <!-- Lista de Exercícios (Otimizada sem desperdício de altura) -->
     <div id="containerExercicios" class="space-y-2.5"></div>
 
     <!-- Botão no Fim da Lista -->
@@ -230,18 +259,18 @@
   </div>
 
   <!-- ========================================== -->
-  <!-- TELA 3: PLANO DE NUTRIÇÃO (LIVRE ADIÇÃO, REMOÇÃO E EDIÇÃO) -->
+  <!-- TELA 3: PLANO DE NUTRIÇÃO -->
   <!-- ========================================== -->
   <div id="telaNutricao" class="hidden max-w-5xl mx-auto p-3 sm:p-5 space-y-4">
     
     <!-- Topo da Nutrição -->
     <header class="flex items-center justify-between py-1 border-b border-slate-800/80 pb-3">
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 sm:gap-3">
         <button type="button" onclick="navegarPara('telaHome')" class="text-xs sm:text-sm bg-[#131f3f] px-3.5 py-2 rounded-xl border border-slate-700 text-emerald-300 font-bold active:scale-95 shadow">
           ⬅ Início
         </button>
-        <div class="flex items-center gap-2.5">
-          <img src="./icone_nutricao.jpg?v=4" alt="Nutrição" class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl border border-emerald-400/60 object-cover shadow">
+        <div class="flex items-center gap-2">
+          <img src="./icone_nutricao.jpg?v=6" alt="Nutrição" class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl border border-emerald-400/60 object-cover shadow">
           <div>
             <h1 class="text-base sm:text-xl font-black text-white leading-tight">Plano de Nutrição</h1>
             <span class="text-[10px] sm:text-xs text-emerald-400 font-extrabold tracking-wider">COMBUSTÍVEL DIÁRIO</span>
@@ -254,33 +283,96 @@
       </button>
     </header>
 
-    <!-- Resumo Diário & Hidratação -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      <!-- Hidratação -->
-      <div class="card-dark rounded-xl p-3.5 flex items-center justify-between border border-blue-500/30 shadow">
+    <!-- Resumo de Hidratação 100% Ajustável -->
+    <div class="card-dark rounded-xl p-3.5 border border-blue-500/40 shadow">
+      <div class="flex items-center justify-between mb-2">
         <div>
-          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">💧 Hidratação Diária</span>
-          <div class="text-2xl font-black text-blue-400 mt-0.5"><span id="contadorAgua">0</span> <span class="text-xs text-slate-400 font-normal">/ 8 copos (2 Litros)</span></div>
+          <span class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+            <span>💧</span> Hidratação Diária (Personalizável)
+          </span>
+          <div class="flex items-baseline gap-2 mt-0.5">
+            <span class="text-2xl sm:text-3xl font-black text-blue-400"><span id="contadorAgua">0</span></span>
+            <span class="text-xs text-slate-400 font-bold">/ meta:</span>
+            <!-- Meta de água ajustável -->
+            <input type="number" id="metaAguaInput" value="8" min="1" max="30" onchange="atualizarMetaAgua(this.value)" 
+                   class="w-12 bg-[#0d172e] border border-blue-500/50 rounded text-center text-sm font-black text-blue-300 py-0.5">
+            <span class="text-xs text-slate-400 font-bold">copos (<span id="totalLitrosAgua">2.0</span> L)</span>
+          </div>
         </div>
+        
+        <!-- Botões de Ação de Água -->
         <div class="flex items-center gap-1.5">
           <button type="button" onclick="alterarAgua(-1)" class="w-9 h-9 rounded-lg bg-slate-800 text-white font-black text-lg active:scale-90">-</button>
-          <button type="button" onclick="alterarAgua(1)" class="w-9 h-9 rounded-lg bg-blue-600 text-white font-black text-lg active:scale-90 shadow">+</button>
+          <button type="button" onclick="alterarAgua(1)" class="w-9 h-9 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-black text-lg active:scale-90 shadow">+</button>
         </div>
       </div>
 
-      <!-- Progresso de Refeições -->
-      <div class="card-dark rounded-xl p-3.5 flex items-center justify-between border border-emerald-500/30 shadow">
-        <div>
-          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">🥗 Refeições do Dia</span>
-          <div class="text-2xl font-black text-emerald-400 mt-0.5" id="statusRefeicoesResumo">0 / 0 feitas</div>
+      <!-- Barra de Progresso Visual de Água -->
+      <div class="w-full bg-[#0d172e] rounded-full h-3 overflow-hidden border border-slate-800">
+        <div id="barraProgressoAgua" class="bg-gradient-to-r from-blue-600 to-cyan-400 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+      </div>
+      
+      <!-- Atalhos de Garrafa / Copo -->
+      <div class="flex items-center justify-between text-[11px] text-slate-400 mt-2 pt-1 border-t border-slate-800/60">
+        <span>Tamanho do copo: 250ml</span>
+        <div class="flex gap-1.5">
+          <button type="button" onclick="alterarAgua(2)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-blue-300 font-bold">+500ml (Garrafa)</button>
+          <button type="button" onclick="resetarAgua()" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-400 font-bold">Zerar</button>
         </div>
-        <button type="button" onclick="resetarRefeicoes()" class="text-xs text-amber-400 hover:underline font-bold px-2 py-1 rounded bg-slate-800/80">
-          Desmarcar todas
-        </button>
       </div>
     </div>
 
-    <!-- Lista Dinâmica de Refeições (Livre Adição, Edição e Remoção) -->
+    <!-- Barra de Metas de Macros (Calorias e Proteínas Ajustáveis) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <!-- Proteínas -->
+      <div class="card-dark rounded-xl p-3 border border-emerald-500/40 shadow">
+        <div class="flex items-center justify-between text-xs font-bold mb-1">
+          <span class="text-emerald-400">🥩 Proteína Consumida</span>
+          <div class="flex items-center gap-1">
+            <span class="text-white font-black text-sm" id="proteinaAtual">0</span>
+            <span class="text-slate-400">/ meta:</span>
+            <input type="number" id="metaProteinaInput" value="160" step="5" onchange="atualizarMetasMacros()" 
+                   class="w-12 bg-[#0d172e] border border-emerald-500/50 rounded text-center text-xs font-black text-emerald-300 py-0.5">
+            <span class="text-slate-400">g</span>
+          </div>
+        </div>
+        <div class="w-full bg-[#0d172e] rounded-full h-2.5 overflow-hidden border border-slate-800">
+          <div id="barraProgressoProteina" class="bg-gradient-to-r from-emerald-600 to-emerald-400 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Calorias -->
+      <div class="card-dark rounded-xl p-3 border border-amber-500/40 shadow">
+        <div class="flex items-center justify-between text-xs font-bold mb-1">
+          <span class="text-amber-400">🔥 Calorias Totais</span>
+          <div class="flex items-center gap-1">
+            <span class="text-white font-black text-sm" id="caloriasAtual">0</span>
+            <span class="text-slate-400">/ meta:</span>
+            <input type="number" id="metaCaloriasInput" value="2200" step="50" onchange="atualizarMetasMacros()" 
+                   class="w-14 bg-[#0d172e] border border-amber-500/50 rounded text-center text-xs font-black text-amber-300 py-0.5">
+            <span class="text-slate-400">kcal</span>
+          </div>
+        </div>
+        <div class="w-full bg-[#0d172e] rounded-full h-2.5 overflow-hidden border border-slate-800">
+          <div id="barraProgressoCalorias" class="bg-gradient-to-r from-amber-600 to-amber-400 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Atalhos Rápidos de Inserção de Alimentos Clássicos -->
+    <div class="card-dark rounded-xl p-2.5 border border-slate-800 shadow">
+      <span class="text-[11px] text-slate-400 font-bold block mb-1.5 uppercase">⚡ Adicionar Alimento Rápido à última refeição:</span>
+      <div class="flex flex-wrap gap-1.5">
+        <button type="button" onclick="adicionarAlimentoRapido('150g Frango Grelhado (46g prot, 240kcal)')" class="text-xs bg-[#0d172e] hover:bg-emerald-950 text-emerald-300 px-2.5 py-1 rounded-lg border border-emerald-500/30 font-bold">+ 🍗 Frango 150g</button>
+        <button type="button" onclick="adicionarAlimentoRapido('150g Arroz Branco (4g prot, 195kcal)')" class="text-xs bg-[#0d172e] hover:bg-slate-800 text-slate-200 px-2.5 py-1 rounded-lg border border-slate-700 font-bold">+ 🍚 Arroz 150g</button>
+        <button type="button" onclick="adicionarAlimentoRapido('3 Ovos Mexidos (18g prot, 210kcal)')" class="text-xs bg-[#0d172e] hover:bg-amber-950 text-amber-300 px-2.5 py-1 rounded-lg border border-amber-500/30 font-bold">+ 🥚 3 Ovos</button>
+        <button type="button" onclick="adicionarAlimentoRapido('30g Whey Protein (24g prot, 120kcal)')" class="text-xs bg-[#0d172e] hover:bg-blue-950 text-blue-300 px-2.5 py-1 rounded-lg border border-blue-500/30 font-bold">+ 🥤 Whey 30g</button>
+        <button type="button" onclick="adicionarAlimentoRapido('1 Banana com Aveia (3g prot, 150kcal)')" class="text-xs bg-[#0d172e] hover:bg-yellow-950 text-yellow-300 px-2.5 py-1 rounded-lg border border-yellow-500/30 font-bold">+ 🍌 Banana</button>
+        <button type="button" onclick="adicionarAlimentoRapido('Salada verde à vontade')" class="text-xs bg-[#0d172e] hover:bg-slate-800 text-emerald-400 px-2.5 py-1 rounded-lg border border-slate-700 font-bold">+ 🥗 Salada</button>
+      </div>
+    </div>
+
+    <!-- Lista Dinâmica de Refeições -->
     <div id="containerRefeicoes" class="space-y-3"></div>
 
     <!-- Botão no Fim da Lista -->
@@ -290,25 +382,59 @@
     </button>
   </div>
 
+  <!-- ========================================== -->
+  <!-- BARRA DE NAVEGAÇÃO FIXA NO RODAPÉ (BOTTOM BAR) -->
+  <!-- ========================================== -->
+  <nav class="fixed bottom-0 left-0 right-0 z-40 bg-[#0d172e]/95 backdrop-blur-md border-t border-slate-800 shadow-2xl">
+    <div class="max-w-md mx-auto grid grid-cols-3 py-2 px-4 text-center">
+      
+      <button type="button" onclick="navegarPara('telaHome')" id="navHome" 
+              class="flex flex-col items-center justify-center text-slate-400 hover:text-amber-400 transition-colors py-1 group">
+        <span class="text-xl group-hover:scale-110 transition-transform">🏠</span>
+        <span class="text-[11px] font-bold mt-0.5">Início</span>
+      </button>
+
+      <button type="button" onclick="navegarPara('telaTreino')" id="navTreino" 
+              class="flex flex-col items-center justify-center text-slate-400 hover:text-blue-400 transition-colors py-1 relative group">
+        <span class="text-xl group-hover:scale-110 transition-transform">🏋️</span>
+        <span class="text-[11px] font-bold mt-0.5">Treino</span>
+        <span id="badgeNavTreino" class="absolute top-0 right-6 bg-blue-600 text-white text-[9px] font-black px-1.5 py-0.2 rounded-full hidden">0</span>
+      </button>
+
+      <button type="button" onclick="navegarPara('telaNutricao')" id="navNutricao" 
+              class="flex flex-col items-center justify-center text-slate-400 hover:text-emerald-400 transition-colors py-1 relative group">
+        <span class="text-xl group-hover:scale-110 transition-transform">🥗</span>
+        <span class="text-[11px] font-bold mt-0.5">Dieta</span>
+        <span id="badgeNavNutricao" class="absolute top-0 right-6 bg-emerald-600 text-white text-[9px] font-black px-1.5 py-0.2 rounded-full hidden">0</span>
+      </button>
+
+    </div>
+  </nav>
+
   <script>
     let modoTreinoAtual = 'A';
+    let diaAtual = 'Seg';
     let timerInterval = null;
     let timerSegundos = 60;
     let tempoPadraoDescanso = 60;
     let coposAgua = 0;
+    let metaAgua = 8;
+    let metaProteina = 160;
+    let metaCalorias = 2200;
+    let wakeLockSentinel = null;
 
-    // Dados Iniciais do Treino A
+    // Dados Iniciais do Treino A com Carga Anterior Gravada
     let dadosTreinoA = [
-      { id: 1, nome: "Supino Inclinado", reps: "4 x 6 a 10", carga: 80, feito: false, obs: "" },
-      { id: 2, nome: "Crucifixo Inclinado Halter ou Cross", reps: "4 x 6 a 10", carga: 26, feito: false, obs: "" },
-      { id: 3, nome: "Desenvolvimento", reps: "4 x 6 a 10", carga: 60, feito: false, obs: "" },
-      { id: 4, nome: "Puxador Fechado", reps: "4 x 6 a 10", carga: 70, feito: false, obs: "" },
-      { id: 5, nome: "Remada Curvada", reps: "4 x 6 a 10", carga: 70, feito: false, obs: "" },
-      { id: 6, nome: "Tríceps Pulley ou Corda", reps: "4 x 6 a 10", carga: 40, feito: false, obs: "" },
-      { id: 7, nome: "Rosca Direta Halter", reps: "4 x 6 a 10", carga: 18, feito: false, obs: "" },
-      { id: 8, nome: "Agachamento Smith", reps: "4 x 6 a 10", carga: 90, feito: false, obs: "" },
-      { id: 9, nome: "Leg Press 45°", reps: "4 x 6 a 10", carga: 220, feito: false, obs: "" },
-      { id: 10, nome: "Mesa Flexora", reps: "4 x 6 a 10", carga: 55, feito: false, obs: "" }
+      { id: 1, nome: "Supino Inclinado", reps: "4 x 6 a 10", carga: 80, cargaAnt: 78, feito: false, obs: "" },
+      { id: 2, nome: "Crucifixo Inclinado Halter ou Cross", reps: "4 x 6 a 10", carga: 26, cargaAnt: 24, feito: false, obs: "" },
+      { id: 3, nome: "Desenvolvimento", reps: "4 x 6 a 10", carga: 60, cargaAnt: 58, feito: false, obs: "" },
+      { id: 4, nome: "Puxador Fechado", reps: "4 x 6 a 10", carga: 70, cargaAnt: 68, feito: false, obs: "" },
+      { id: 5, nome: "Remada Curvada", reps: "4 x 6 a 10", carga: 70, cargaAnt: 66, feito: false, obs: "" },
+      { id: 6, nome: "Tríceps Pulley ou Corda", reps: "4 x 6 a 10", carga: 40, cargaAnt: 38, feito: false, obs: "" },
+      { id: 7, nome: "Rosca Direta Halter", reps: "4 x 6 a 10", carga: 18, cargaAnt: 16, feito: false, obs: "" },
+      { id: 8, nome: "Agachamento Smith", reps: "4 x 6 a 10", carga: 90, cargaAnt: 85, feito: false, obs: "" },
+      { id: 9, nome: "Leg Press 45°", reps: "4 x 6 a 10", carga: 220, cargaAnt: 210, feito: false, obs: "" },
+      { id: 10, nome: "Mesa Flexora", reps: "4 x 6 a 10", carga: 55, cargaAnt: 50, feito: false, obs: "" }
     ];
 
     // Dados Iniciais do Treino B
@@ -325,13 +451,15 @@
       { id: 110, nome: "Mesa Flexora", feito: false, obs: "", series: [{ r: 18, c: 35 }, { r: 15, c: 45 }, { r: 12, c: 55 }] }
     ];
 
-    // Dados Iniciais do Módulo de Nutrição (100% Dinâmico)
+    // Dados Iniciais do Módulo de Nutrição
     let dadosNutricao = [
       { id: 1, titulo: "☕ Café da Manhã", horario: "07:30", alimentos: "3 ovos mexidos, 2 fatias de pão integral, café sem açúcar", feito: false, calorias: 380, proteina: 24 },
-      { id: 2, titulo: "🍛 Almoço", horario: "12:30", alimentos: "150g filé de frango grelhado, 150g arroz branco, legumes e salada à vontade com azeite", feito: false, calorias: 620, proteina: 48 },
-      { id: 3, titulo: "🍎 Lanche da Tarde / Pré-Treino", horario: "16:30", alimentos: "30g Whey Protein, 1 banana fatiada com aveia e canela", feito: false, calorias: 310, proteina: 28 },
+      { id: 2, titulo: "🍛 Almoço", horario: "12:30", alimentos: "150g filé de frango grelhado, 150g arroz branco, legumes e salada com azeite", feito: false, calorias: 620, proteina: 48 },
+      { id: 3, titulo: "🍎 Lanche da Tarde / Pré-Treino", horario: "16:30", alimentos: "30g Whey Protein, 1 banana fatiada com aveia", feito: false, calorias: 310, proteina: 28 },
       { id: 4, titulo: "🥗 Jantar", horario: "20:30", alimentos: "150g patinho moído, 120g mandioca cozida, salada verde", feito: false, calorias: 520, proteina: 42 }
     ];
+
+    let diasConcluidos = {};
 
     function navegarPara(idTela) {
       document.getElementById('telaHome').classList.add('hidden');
@@ -339,8 +467,43 @@
       document.getElementById('telaNutricao').classList.add('hidden');
       document.getElementById(idTela).classList.remove('hidden');
       window.scrollTo(0, 0);
+
+      // Atualiza botões da barra inferior
+      document.getElementById('navHome').className = idTela === 'telaHome' ? "flex flex-col items-center justify-center text-amber-400 py-1" : "flex flex-col items-center justify-center text-slate-400 hover:text-amber-400 py-1";
+      document.getElementById('navTreino').className = idTela === 'telaTreino' ? "flex flex-col items-center justify-center text-blue-400 py-1 relative" : "flex flex-col items-center justify-center text-slate-400 hover:text-blue-400 py-1 relative";
+      document.getElementById('navNutricao').className = idTela === 'telaNutricao' ? "flex flex-col items-center justify-center text-emerald-400 py-1 relative" : "flex flex-col items-center justify-center text-slate-400 hover:text-emerald-400 py-1 relative";
+
       if (idTela === 'telaNutricao') renderizarNutricao();
       if (idTela === 'telaTreino') renderizarExercicios();
+    }
+
+    // ==========================================
+    // MANTER TELA ACESA (WAKE LOCK API)
+    // ==========================================
+    async function toggleWakeLock() {
+      if ('wakeLock' in navigator) {
+        if (!wakeLockSentinel) {
+          try {
+            wakeLockSentinel = await navigator.wakeLock.request('screen');
+            document.getElementById('wakeLockIcon').textContent = "🔆";
+            document.getElementById('wakeLockText').textContent = "Tela Acesa: ON";
+            document.getElementById('btnWakeLock').className = "px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl border border-amber-400 bg-amber-500/20 text-amber-300 text-xs font-bold flex items-center gap-1 shadow active:scale-95";
+            wakeLockSentinel.addEventListener('release', () => {
+              wakeLockSentinel = null;
+              document.getElementById('wakeLockIcon').textContent = "💡";
+              document.getElementById('wakeLockText').textContent = "Tela Acesa: OFF";
+              document.getElementById('btnWakeLock').className = "px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl border border-slate-700 bg-[#131f3f] text-slate-300 text-xs font-bold flex items-center gap-1 shadow active:scale-95";
+            });
+          } catch(err) {
+            alert("Não foi possível ativar o modo tela acesa no seu navegador.");
+          }
+        } else {
+          wakeLockSentinel.release();
+          wakeLockSentinel = null;
+        }
+      } else {
+        alert("Recurso de tela acesa não suportado neste navegador.");
+      }
     }
 
     function alternarModoTreino(modo) {
@@ -359,8 +522,34 @@
       renderizarExercicios();
     }
 
+    function selecionarDia(dia) {
+      diaAtual = dia;
+      document.querySelectorAll('.dia-btn').forEach(btn => {
+        if (btn.textContent.includes(dia)) {
+          btn.className = "dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg bg-blue-600 text-white shadow transition-all flex items-center justify-center gap-1";
+        } else {
+          btn.className = "dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1";
+        }
+      });
+      atualizarStreaksVisuais();
+    }
+
+    function atualizarStreaksVisuais() {
+      const botoes = document.querySelectorAll('.dia-btn');
+      const dias = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'];
+      botoes.forEach((btn, idx) => {
+        const d = dias[idx];
+        const span = btn.querySelector('.dia-streak');
+        if (diasConcluidos[d]) {
+          span.classList.remove('hidden');
+        } else {
+          span.classList.add('hidden');
+        }
+      });
+    }
+
     // ==========================================
-    // RENDERIZAÇÃO DE TREINOS (Densa, rica e sem espaço desperdiçado)
+    // RENDERIZAÇÃO DE TREINOS COM HISTÓRICO E COMPACTA
     // ==========================================
     function renderizarExercicios() {
       const container = document.getElementById('containerExercicios');
@@ -370,10 +559,11 @@
       if (modoTreinoAtual === 'A') {
         dadosTreinoA.forEach((ex, idx) => {
           const proxima = Math.round(ex.carga * (1 + pct));
+          const evolucao = ex.cargaAnt ? (ex.carga - ex.cargaAnt) : 0;
           const div = document.createElement('div');
-          div.className = `card-dark rounded-xl p-3 sm:p-3.5 transition-all border ${ex.feito ? 'opacity-65 border-emerald-500/50 bg-[#0c1e33]' : 'border-slate-800/90 shadow'}`;
+          div.className = `card-dark rounded-xl p-3 sm:p-3.5 transition-all border ${ex.feito ? 'opacity-70 border-emerald-500/50 bg-[#0c1e33]' : 'border-slate-800/90 shadow'}`;
           div.innerHTML = `
-            <!-- Linha 1: Checkbox, Nome do Exercício e Botões -->
+            <!-- Linha 1: Checkbox, Nome e Ações -->
             <div class="flex items-center justify-between gap-2 border-b border-slate-800/80 pb-2 mb-2">
               <div class="flex items-center gap-2.5 flex-1 min-w-0">
                 <input type="checkbox" ${ex.feito ? 'checked' : ''} onchange="toggleFeitoA(${idx})" 
@@ -383,7 +573,7 @@
               </div>
               <div class="flex items-center gap-1.5 flex-shrink-0">
                 <button type="button" onclick="toggleFeitoA(${idx})" 
-                        class="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg font-black text-xs transition-all active:scale-95 ${ex.feito ? 'bg-emerald-600 text-white' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'}">
+                        class="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg font-black text-xs transition-all active:scale-95 ${ex.feito ? 'bg-emerald-600 text-white shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'}">
                   ${ex.feito ? '✓ Feito' : 'Marcar'}
                 </button>
                 <button type="button" onclick="removerExercicioA(${idx})" title="Excluir"
@@ -393,49 +583,50 @@
               </div>
             </div>
 
-            <!-- Linha 2: Grade Horizontal com Números Grandes e Espaço Otimizado -->
+            <!-- Linha 2: Grade com Números Grandes e Histórico -->
             <div class="grid grid-cols-12 gap-2 items-center">
-              <!-- Reps -->
               <div class="col-span-4 bg-[#0d172e] p-2 rounded-lg border border-slate-800/80">
-                <span class="text-[10px] text-slate-400 block font-bold leading-tight uppercase">Séries x Reps</span>
+                <span class="text-[10px] text-slate-400 block font-bold uppercase leading-tight">Séries x Reps</span>
                 <input type="text" value="${ex.reps}" onchange="dadosTreinoA[${idx}].reps = this.value; salvarLocal();"
                        class="bg-transparent w-full text-sm sm:text-base font-black text-slate-100 focus:outline-none">
               </div>
 
-              <!-- Carga Atual -->
               <div class="col-span-4 bg-[#0d172e] p-2 rounded-lg border border-slate-800/80 flex items-center justify-between">
                 <div>
-                  <span class="text-[10px] text-slate-400 block font-bold leading-tight uppercase">Atual (kg)</span>
-                  <input type="number" step="0.5" value="${ex.carga}" onchange="dadosTreinoA[${idx}].carga = parseFloat(this.value)||0; renderizarExercicios();"
+                  <div class="flex items-center gap-1">
+                    <span class="text-[10px] text-slate-400 font-bold uppercase leading-tight">Atual (kg)</span>
+                    ${evolucao > 0 ? `<span class="text-[9px] text-emerald-400 font-bold">+${evolucao}kg</span>` : ''}
+                  </div>
+                  <input type="number" step="0.5" value="${ex.carga}" onchange="dadosTreinoA[${idx}].cargaAnt = dadosTreinoA[${idx}].carga; dadosTreinoA[${idx}].carga = parseFloat(this.value)||0; renderizarExercicios();"
                          class="bg-transparent w-full text-base sm:text-xl font-black text-white focus:outline-none">
                 </div>
                 <span class="text-xs text-slate-500 font-bold">kg</span>
               </div>
 
-              <!-- Próxima Carga -->
               <div class="col-span-4 bg-emerald-950/80 p-2 rounded-lg border border-emerald-500/40 flex items-center justify-between">
                 <div>
-                  <span class="text-[10px] text-emerald-400 block font-bold leading-tight uppercase">Próx (+${(pct*100).toFixed(0)}%)</span>
+                  <span class="text-[10px] text-emerald-400 block font-bold uppercase leading-tight">Próx (+${(pct*100).toFixed(0)}%)</span>
                   <span class="text-base sm:text-xl font-black text-emerald-300">${proxima}</span>
                 </div>
                 <span class="text-xs text-emerald-400 font-bold">kg</span>
               </div>
             </div>
 
-            <!-- Linha 3: Anotação Opcional Compacta -->
-            <div class="mt-2 pt-1.5 border-t border-slate-800/60">
+            <!-- Linha 3: Anotação Compacta -->
+            <div class="mt-2 pt-1.5 border-t border-slate-800/60 flex items-center justify-between">
               <input type="text" value="${ex.obs || ''}" onchange="dadosTreinoA[${idx}].obs = this.value; salvarLocal();"
                      class="w-full bg-transparent text-xs text-slate-400 placeholder-slate-600 focus:outline-none focus:text-slate-200" 
-                     placeholder="+ Adicionar observação (banco 30°, pegada neutra, etc...)">
+                     placeholder="+ Adicionar observação (ex: banco 30°, drop-set...)">
+              ${ex.cargaAnt ? `<span class="text-[10px] text-slate-500 font-semibold whitespace-nowrap pl-2">Ant: ${ex.cargaAnt}kg</span>` : ''}
             </div>
           `;
           container.appendChild(div);
         });
       } else {
-        // Treino B Ondulatório
+        // Treino B
         dadosTreinoB.forEach((ex, idx) => {
           const div = document.createElement('div');
-          div.className = `card-dark rounded-xl p-3 sm:p-3.5 transition-all border ${ex.feito ? 'opacity-65 border-emerald-500/50 bg-[#0c1e33]' : 'border-slate-800/90 shadow'}`;
+          div.className = `card-dark rounded-xl p-3 sm:p-3.5 transition-all border ${ex.feito ? 'opacity-70 border-emerald-500/50 bg-[#0c1e33]' : 'border-slate-800/90 shadow'}`;
           
           let seriesHtml = '';
           ex.series.forEach((s, sIdx) => {
@@ -471,7 +662,7 @@
               </div>
               <div class="flex items-center gap-1.5 flex-shrink-0">
                 <button type="button" onclick="toggleFeitoB(${idx})" 
-                        class="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg font-black text-xs transition-all active:scale-95 ${ex.feito ? 'bg-emerald-600 text-white' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'}">
+                        class="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg font-black text-xs transition-all active:scale-95 ${ex.feito ? 'bg-emerald-600 text-white shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'}">
                   ${ex.feito ? '✓ Feito' : 'Marcar'}
                 </button>
                 <button type="button" onclick="removerExercicioB(${idx})" title="Excluir"
@@ -535,18 +726,53 @@
       document.getElementById('statusExerciciosFeitos').textContent = `${feitosCount} de ${totalCount} feitos`;
       
       const pctConcluido = totalCount > 0 ? Math.round((feitosCount / totalCount) * 100) : 0;
-      document.getElementById('porcentagemConcluido').textContent = `${pctConcluido}% concluído`;
+      document.getElementById('porcentagemConcluido').textContent = `${pctConcluido}%`;
+
+      // Atualiza Badge do Rodapé
+      const badge = document.getElementById('badgeNavTreino');
+      if (feitosCount > 0) {
+        badge.textContent = `${feitosCount}/${totalCount}`;
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
+
+      // Checa Celebração se 100% dos exercícios forem feitos
+      if (totalCount > 0 && feitosCount === totalCount) {
+        diasConcluidos[diaAtual] = true;
+        salvarLocal();
+        atualizarStreaksVisuais();
+        dispararCelebracao(Math.round(volumeFeito));
+      }
+    }
+
+    function dispararCelebracao(vol) {
+      const modal = document.getElementById('modalParabens');
+      document.getElementById('parabensMensagem').textContent = `Sensacional! Você concluiu todos os exercícios e movimentou ${vol.toLocaleString('pt-BR')} kg!`;
+      modal.classList.remove('hidden');
+      tocarSomConquista();
+      if (navigator.vibrate) navigator.vibrate([200, 100, 200, 100, 400]);
+    }
+
+    function fecharModalParabens() {
+      document.getElementById('modalParabens').classList.add('hidden');
     }
 
     function toggleFeitoA(idx) {
       dadosTreinoA[idx].feito = !dadosTreinoA[idx].feito;
-      if (dadosTreinoA[idx].feito) iniciarTimer();
+      if (dadosTreinoA[idx].feito) {
+        iniciarTimer();
+        tocarBipClique();
+      }
       renderizarExercicios();
     }
 
     function toggleFeitoB(idx) {
       dadosTreinoB[idx].feito = !dadosTreinoB[idx].feito;
-      if (dadosTreinoB[idx].feito) iniciarTimer();
+      if (dadosTreinoB[idx].feito) {
+        iniciarTimer();
+        tocarBipClique();
+      }
       renderizarExercicios();
     }
 
@@ -580,7 +806,7 @@
     function adicionarNovoExercicio() {
       const nomePadrao = modoTreinoAtual === 'A' ? `Novo Exercício ${dadosTreinoA.length + 1}` : `Novo Exercício ${dadosTreinoB.length + 1}`;
       if (modoTreinoAtual === 'A') {
-        dadosTreinoA.push({ id: Date.now(), nome: nomePadrao, reps: "4 x 10", carga: 20, feito: false, obs: "" });
+        dadosTreinoA.push({ id: Date.now(), nome: nomePadrao, reps: "4 x 10", carga: 20, cargaAnt: 20, feito: false, obs: "" });
       } else {
         dadosTreinoB.push({ id: Date.now(), nome: nomePadrao, feito: false, obs: "", series: [{ r: 18, c: 15 }, { r: 15, c: 20 }, { r: 12, c: 25 }] });
       }
@@ -594,11 +820,14 @@
       } else {
         dadosTreinoB.forEach(e => e.feito = false);
       }
+      diasConcluidos[diaAtual] = false;
+      salvarLocal();
+      atualizarStreaksVisuais();
       renderizarExercicios();
     }
 
     // ==========================================
-    // CRONÔMETRO
+    // CRONÔMETRO COM SONS PROFISSIONAIS
     // ==========================================
     function formatarTempo(segundos) {
       const m = Math.floor(segundos / 60).toString().padStart(2, '0');
@@ -635,16 +864,8 @@
         document.getElementById('timerDisplay').textContent = formatarTempo(timerSegundos);
         if (timerSegundos <= 0) {
           clearInterval(timerInterval);
-          if (navigator.vibrate) navigator.vibrate([300, 150, 300, 150, 500]);
-          try {
-            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            const osc = audioCtx.createOscillator();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(880, audioCtx.currentTime);
-            osc.connect(audioCtx.destination);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.6);
-          } catch(e) {}
+          tocarAlarmeDescanso();
+          if (navigator.vibrate) navigator.vibrate([400, 150, 400, 150, 600]);
         }
       }, 1000);
     }
@@ -657,20 +878,81 @@
       document.getElementById('timerDisplay').textContent = formatarTempo(timerSegundos);
     }
 
+    // Sons via Web Audio API (sem precisar de arquivos externos)
+    function tocarBipClique() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.frequency.setValueAtTime(600, ctx.currentTime);
+        gain.gain.setValueAtTime(0.1, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.08);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.08);
+      } catch(e) {}
+    }
+
+    function tocarAlarmeDescanso() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        // Beep duplo estilo cronômetro esportivo
+        [0, 0.25, 0.5].forEach(delay => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(880, ctx.currentTime + delay);
+          gain.gain.setValueAtTime(0.3, ctx.currentTime + delay);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + delay + 0.18);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + delay);
+          osc.stop(ctx.currentTime + delay + 0.18);
+        });
+      } catch(e) {}
+    }
+
+    function tocarSomConquista() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const notas = [523.25, 659.25, 783.99, 1046.50]; // Acorde Maior
+        notas.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, ctx.currentTime + (idx * 0.1));
+          gain.gain.setValueAtTime(0.2, ctx.currentTime + (idx * 0.1));
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + (idx * 0.1) + 0.35);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + (idx * 0.1));
+          osc.stop(ctx.currentTime + (idx * 0.1) + 0.35);
+        });
+      } catch(e) {}
+    }
+
     // ==========================================
-    // MÓDULO DE NUTRIÇÃO DINÂMICO
+    // MÓDULO DE NUTRIÇÃO COM METAS AJUSTÁVEIS
     // ==========================================
     function renderizarNutricao() {
       const container = document.getElementById('containerRefeicoes');
       container.innerHTML = '';
 
       let feitas = 0;
+      let totalProt = 0;
+      let totalCal = 0;
+
       dadosNutricao.forEach((ref, idx) => {
-        if (ref.feito) feitas++;
+        if (ref.feito) {
+          feitas++;
+          totalProt += (ref.proteina || 0);
+          totalCal += (ref.calorias || 0);
+        }
         const div = document.createElement('div');
-        div.className = `card-dark rounded-xl p-3 sm:p-4 border transition-all ${ref.feito ? 'opacity-65 border-emerald-500/50 bg-[#0c241c]' : 'border-slate-800 shadow'}`;
+        div.className = `card-dark rounded-xl p-3 sm:p-4 border transition-all ${ref.feito ? 'opacity-70 border-emerald-500/50 bg-[#0c241c]' : 'border-slate-800 shadow'}`;
         div.innerHTML = `
-          <!-- Topo da Refeição: Checkbox, Título Editável, Horário e Excluir -->
+          <!-- Topo da Refeição: Checkbox, Título, Horário e Excluir -->
           <div class="flex items-center justify-between gap-2 border-b border-slate-800/80 pb-2 mb-2.5">
             <div class="flex items-center gap-2 flex-1 min-w-0">
               <input type="checkbox" ${ref.feito ? 'checked' : ''} onchange="toggleRefeicaoFeita(${idx})" 
@@ -696,24 +978,24 @@
             </div>
           </div>
 
-          <!-- Conteúdo da Refeição: Descrição dos Alimentos Livremente Editável -->
+          <!-- Descrição dos Alimentos Livremente Editável -->
           <div>
-            <textarea rows="2" onchange="dadosNutricao[${idx}].alimentos = this.value; salvarLocal();" 
+            <textarea rows="2" id="alimentos_${idx}" onchange="dadosNutricao[${idx}].alimentos = this.value; salvarLocal();" 
                       class="input-dark w-full rounded-lg p-2.5 text-xs sm:text-sm text-slate-200 resize-y leading-relaxed focus:border-emerald-500" 
-                      placeholder="Descreva os alimentos desta refeição (ex: 3 ovos, 150g arroz, salada...)">${ref.alimentos || ''}</textarea>
+                      placeholder="Descreva os alimentos desta refeição (ex: 3 ovos, 150g frango, salada...)">${ref.alimentos || ''}</textarea>
           </div>
 
-          <!-- Campos Opcionais de Metas Rápidas (Calorias / Proteínas) -->
+          <!-- Campos de Metas Rápidas (Calorias / Proteínas) -->
           <div class="grid grid-cols-2 gap-2 mt-2 pt-2 border-t border-slate-800/50">
             <div class="flex items-center gap-1.5 bg-[#0d172e]/60 px-2.5 py-1.5 rounded-lg border border-slate-800/80">
               <span class="text-[10px] text-slate-400 font-bold uppercase">Calorias:</span>
-              <input type="number" value="${ref.calorias || ''}" onchange="dadosNutricao[${idx}].calorias = parseInt(this.value)||0; salvarLocal();" 
+              <input type="number" value="${ref.calorias || ''}" onchange="dadosNutricao[${idx}].calorias = parseInt(this.value)||0; renderizarNutricao();" 
                      placeholder="Ex: 450" class="bg-transparent text-xs text-amber-400 font-bold w-full focus:outline-none">
               <span class="text-[10px] text-slate-500 font-semibold">kcal</span>
             </div>
             <div class="flex items-center gap-1.5 bg-[#0d172e]/60 px-2.5 py-1.5 rounded-lg border border-slate-800/80">
               <span class="text-[10px] text-slate-400 font-bold uppercase">Proteína:</span>
-              <input type="number" value="${ref.proteina || ''}" onchange="dadosNutricao[${idx}].proteina = parseInt(this.value)||0; salvarLocal();" 
+              <input type="number" value="${ref.proteina || ''}" onchange="dadosNutricao[${idx}].proteina = parseInt(this.value)||0; renderizarNutricao();" 
                      placeholder="Ex: 35" class="bg-transparent text-xs text-emerald-400 font-bold w-full focus:outline-none">
               <span class="text-[10px] text-slate-500 font-semibold">g</span>
             </div>
@@ -722,12 +1004,31 @@
         container.appendChild(div);
       });
 
-      document.getElementById('statusRefeicoesResumo').textContent = `${feitas} de ${dadosNutricao.length} feitas`;
+      // Atualiza Totais e Barras de Macros
+      document.getElementById('proteinaAtual').textContent = totalProt;
+      document.getElementById('caloriasAtual').textContent = totalCal;
+      
+      const pctProt = Math.min(100, Math.round((totalProt / metaProteina) * 100));
+      const pctCal = Math.min(100, Math.round((totalCal / metaCalorias) * 100));
+      document.getElementById('barraProgressoProteina').style.width = `${pctProt}%`;
+      document.getElementById('barraProgressoCalorias').style.width = `${pctCal}%`;
+
+      // Atualiza Badge do Rodapé
+      const badge = document.getElementById('badgeNavNutricao');
+      if (feitas > 0) {
+        badge.textContent = `${feitas}/${dadosNutricao.length}`;
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
+
+      atualizarProgressoAgua();
       salvarLocal();
     }
 
     function toggleRefeicaoFeita(idx) {
       dadosNutricao[idx].feito = !dadosNutricao[idx].feito;
+      tocarBipClique();
       renderizarNutricao();
     }
 
@@ -758,10 +1059,53 @@
       renderizarNutricao();
     }
 
+    function adicionarAlimentoRapido(texto) {
+      if (dadosNutricao.length === 0) return;
+      const ultima = dadosNutricao[dadosNutricao.length - 1];
+      if (ultima.alimentos && !ultima.alimentos.includes("Adicione os alimentos")) {
+        ultima.alimentos += ` + ${texto}`;
+      } else {
+        ultima.alimentos = texto;
+      }
+      tocarBipClique();
+      renderizarNutricao();
+    }
+
+    // ==========================================
+    // HIDRATAÇÃO 100% AJUSTÁVEL
+    // ==========================================
     function alterarAgua(delta) {
       coposAgua = Math.max(0, coposAgua + delta);
       document.getElementById('contadorAgua').textContent = coposAgua;
-      localStorage.setItem('agua_hoje', coposAgua);
+      tocarBipClique();
+      atualizarProgressoAgua();
+      salvarLocal();
+    }
+
+    function resetarAgua() {
+      coposAgua = 0;
+      document.getElementById('contadorAgua').textContent = coposAgua;
+      atualizarProgressoAgua();
+      salvarLocal();
+    }
+
+    function atualizarMetaAgua(valor) {
+      metaAgua = Math.max(1, parseInt(valor) || 8);
+      document.getElementById('totalLitrosAgua').textContent = ((metaAgua * 250) / 1000).toFixed(1);
+      atualizarProgressoAgua();
+      salvarLocal();
+    }
+
+    function atualizarMetasMacros() {
+      metaProteina = parseInt(document.getElementById('metaProteinaInput').value) || 160;
+      metaCalorias = parseInt(document.getElementById('metaCaloriasInput').value) || 2200;
+      renderizarNutricao();
+      salvarLocal();
+    }
+
+    function atualizarProgressoAgua() {
+      const pct = Math.min(100, Math.round((coposAgua / metaAgua) * 100));
+      document.getElementById('barraProgressoAgua').style.width = `${pct}%`;
     }
 
     // ==========================================
@@ -772,6 +1116,11 @@
       localStorage.setItem('treino_dados_B', JSON.stringify(dadosTreinoB));
       localStorage.setItem('nutricao_dados', JSON.stringify(dadosNutricao));
       localStorage.setItem('treino_pct', document.getElementById('porcentagem').value);
+      localStorage.setItem('agua_copos', coposAgua);
+      localStorage.setItem('agua_meta', metaAgua);
+      localStorage.setItem('meta_proteina', metaProteina);
+      localStorage.setItem('meta_calorias', metaCalorias);
+      localStorage.setItem('dias_concluidos', JSON.stringify(diasConcluidos));
     }
 
     function carregarLocal() {
@@ -779,7 +1128,11 @@
       const b = localStorage.getItem('treino_dados_B');
       const n = localStorage.getItem('nutricao_dados');
       const p = localStorage.getItem('treino_pct');
-      const agua = localStorage.getItem('agua_hoje');
+      const agua = localStorage.getItem('agua_copos');
+      const mAgua = localStorage.getItem('agua_meta');
+      const mProt = localStorage.getItem('meta_proteina');
+      const mCal = localStorage.getItem('meta_calorias');
+      const streaks = localStorage.getItem('dias_concluidos');
 
       if (a) {
         try { dadosTreinoA = JSON.parse(a); } catch(e){}
@@ -791,14 +1144,29 @@
         try { dadosNutricao = JSON.parse(n); } catch(e){}
       }
       if (p) document.getElementById('porcentagem').value = p;
-      if (agua) {
-        coposAgua = parseInt(agua) || 0;
-        document.getElementById('contadorAgua').textContent = coposAgua;
+      if (agua) coposAgua = parseInt(agua) || 0;
+      if (mAgua) {
+        metaAgua = parseInt(mAgua) || 8;
+        document.getElementById('metaAguaInput').value = metaAgua;
+        document.getElementById('totalLitrosAgua').textContent = ((metaAgua * 250) / 1000).toFixed(1);
       }
+      if (mProt) {
+        metaProteina = parseInt(mProt) || 160;
+        document.getElementById('metaProteinaInput').value = metaProteina;
+      }
+      if (mCal) {
+        metaCalorias = parseInt(mCal) || 2200;
+        document.getElementById('metaCaloriasInput').value = metaCalorias;
+      }
+      if (streaks) {
+        try { diasConcluidos = JSON.parse(streaks); } catch(e){}
+      }
+
+      document.getElementById('contadorAgua').textContent = coposAgua;
     }
 
     function exportarBackup() {
-      const dados = { dadosTreinoA, dadosTreinoB, dadosNutricao, pct: document.getElementById('porcentagem').value };
+      const dados = { dadosTreinoA, dadosTreinoB, dadosNutricao, pct: document.getElementById('porcentagem').value, metaAgua, metaProteina, metaCalorias, diasConcluidos };
       const blob = new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -832,19 +1200,7 @@
       input.click();
     }
 
-    document.querySelectorAll('.dia-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.dia-btn').forEach(b => {
-          b.className = "dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg text-slate-400 hover:text-white transition-all";
-        });
-        this.className = "dia-btn flex-1 py-2 sm:py-2.5 text-xs sm:text-sm font-black rounded-lg bg-blue-600 text-white shadow transition-all";
-      });
-    });
-
-    document.getElementById('porcentagem').addEventListener('input', renderizarExercicios);
-
-    
-    // Esconder Splash Screen após 1.4s
+    // Inicialização
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         const splash = document.getElementById('splashScreen');
@@ -852,11 +1208,14 @@
           splash.style.opacity = '0';
           setTimeout(() => splash.style.display = 'none', 700);
         }
-      }, 1400);
+      }, 1300);
     });
+
+    document.getElementById('porcentagem').addEventListener('input', renderizarExercicios);
 
     carregarLocal();
     renderizarExercicios();
+    atualizarStreaksVisuais();
 
     // Auto-atualização de cache
     if ('serviceWorker' in navigator) {
