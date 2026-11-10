@@ -95,7 +95,7 @@
             <span class="absolute -bottom-1 -right-1 bg-blue-600 text-white text-xs w-7 h-7 rounded-full flex items-center justify-center border-2 border-slate-900 shadow">🏋️</span>
           </div>
           <div>
-            <h2 class="text-lg sm:text-2xl font-black text-white">Controle de Treinos</h2>
+            <h2 class="text-lg sm:text-2xl font-black text-white">Treinos & Sobrecarga</h2>
             <p class="text-xs sm:text-sm text-blue-200/90 mt-1">Treino A normal, B ondulatório, cronômetro e cargas</p>
           </div>
         </div>
@@ -111,7 +111,7 @@
             <span class="absolute -bottom-1 -right-1 bg-emerald-600 text-white text-xs w-7 h-7 rounded-full flex items-center justify-center border-2 border-slate-900 shadow">🥗</span>
           </div>
           <div>
-            <h2 class="text-lg sm:text-2xl font-black text-white">Plano de Nutrição</h2>
+            <h2 class="text-lg sm:text-2xl font-black text-white">Plano Nutricional</h2>
             <p class="text-xs sm:text-sm text-emerald-200/90 mt-1">Refeições livres, metas de macros e hidratação ajustável</p>
           </div>
         </div>
@@ -134,34 +134,34 @@
   <!-- ========================================== -->
   <div id="telaTreino" class="hidden max-w-5xl mx-auto p-3 sm:p-5 space-y-4">
 
-    <!-- Topo com Wake Lock (Manter Tela Acesa) -->
-    <header class="flex items-center justify-between py-1 border-b border-slate-800/80 pb-3">
-      <div class="flex items-center gap-2 sm:gap-3">
-        <button type="button" onclick="navegarPara('telaHome')" class="text-xs sm:text-sm bg-[#131f3f] hover:bg-[#1a2b56] px-3.5 py-2 rounded-xl border border-slate-700 text-blue-300 font-bold flex items-center gap-1.5 active:scale-95 shadow">
-          ⬅ Início
-        </button>
-        <div class="flex items-center gap-2">
-          <img src="./icone_treino.jpg?v=6" alt="Treino" class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl border border-amber-400/70 object-cover shadow">
-          <div>
-            <h1 class="text-base sm:text-xl font-black text-white leading-tight">Controle de Treinos</h1>
-            <span class="text-[10px] sm:text-xs text-amber-400 font-extrabold tracking-wider">DON'T GIVE UP</span>
+    <!-- Topo Inteligente Responsivo (Sem quebras no celular) -->
+    <header class="py-1 border-b border-slate-800/80 pb-3">
+      <div class="flex items-center justify-between gap-2">
+        <!-- Lado Esquerdo -->
+        <div class="flex items-center gap-2 min-w-0">
+          <button type="button" onclick="navegarPara('telaHome')" class="bg-[#131f3f] hover:bg-[#1a2b56] p-2 sm:px-3 sm:py-2 rounded-xl border border-slate-700 text-blue-300 font-bold flex items-center gap-1 active:scale-95 shadow flex-shrink-0">
+            <span class="text-base leading-none">⬅</span> <span class="hidden sm:inline text-xs">Início</span>
+          </button>
+          <img src="./icone_treino.jpg?v=7" alt="Treino" class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl border border-amber-400/70 object-cover shadow flex-shrink-0">
+          <div class="min-w-0">
+            <h1 class="text-sm sm:text-lg font-black text-white leading-tight truncate">Treinos & Cargas</h1>
+            <span class="text-[9px] sm:text-xs text-amber-400 font-black tracking-wider block">DON'T GIVE UP</span>
           </div>
         </div>
-      </div>
 
-      <div class="flex items-center gap-2">
-        <!-- Botão Manter Tela Acesa (Wake Lock) -->
-        <button type="button" id="btnWakeLock" onclick="toggleWakeLock()" 
-                class="px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl border border-slate-700 bg-[#131f3f] text-slate-300 text-xs font-bold flex items-center gap-1 shadow active:scale-95">
-          <span id="wakeLockIcon">💡</span> <span class="hidden sm:inline" id="wakeLockText">Tela Acesa: OFF</span>
-        </button>
+        <!-- Lado Direito -->
+        <div class="flex items-center gap-1.5 flex-shrink-0">
+          <button type="button" id="btnWakeLock" onclick="toggleWakeLock()" title="Manter Tela Acesa"
+                  class="p-2 sm:px-2.5 sm:py-1.5 rounded-xl border border-slate-700 bg-[#131f3f] text-slate-300 text-xs font-bold flex items-center gap-1 shadow active:scale-95">
+            <span id="wakeLockIcon">💡</span> <span class="hidden md:inline" id="wakeLockText">Tela Acesa</span>
+          </button>
 
-        <!-- Sobrecarga % -->
-        <div class="bg-[#131f3f] px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl border border-slate-700 flex items-center gap-1 shadow">
-          <span class="text-xs font-bold text-slate-300">Sobrecarga:</span>
-          <input type="number" id="porcentagem" value="3" step="0.5" 
-                 class="w-9 bg-transparent text-center font-black text-emerald-400 focus:outline-none text-base">
-          <span class="font-black text-emerald-400 text-xs">%</span>
+          <div class="bg-[#131f3f] px-2 py-1.5 rounded-xl border border-slate-700 flex items-center gap-1 shadow">
+            <span class="text-[10px] sm:text-xs font-bold text-slate-400">Carga:</span>
+            <input type="number" id="porcentagem" value="3" step="0.5" 
+                   class="w-7 sm:w-8 bg-transparent text-center font-black text-emerald-400 focus:outline-none text-xs sm:text-sm">
+            <span class="font-black text-emerald-400 text-xs">%</span>
+          </div>
         </div>
       </div>
     </header>
@@ -181,11 +181,11 @@
     <div class="card-dark rounded-xl p-1.5 grid grid-cols-2 gap-2 shadow">
       <button type="button" id="tabTreinoA" onclick="alternarModoTreino('A')"
               class="py-2.5 sm:py-3 px-3 text-xs sm:text-base font-black rounded-lg bg-blue-600 text-white shadow transition-all flex items-center justify-center gap-1.5">
-        <span>🏋️</span> Treino A - Normal (Carga Fixa)
+        <span>🏋️</span> Treino A (Carga Fixa)
       </button>
       <button type="button" id="tabTreinoB" onclick="alternarModoTreino('B')"
               class="py-2.5 sm:py-3 px-3 text-xs sm:text-base font-black rounded-lg text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1.5">
-        <span>⚡</span> Treino B - Ondulatório (3 Séries)
+        <span>⚡</span> Treino B (Ondulatório)
       </button>
     </div>
 
@@ -207,20 +207,20 @@
         </div>
       </div>
 
-      <!-- Bloco de Timer (7 colunas) -->
+      <!-- Bloco de Timer (Otimizado sem colisões) -->
       <div class="md:col-span-7 card-dark rounded-xl p-3 sm:p-4 border border-amber-500/40 shadow flex flex-col justify-between bg-gradient-to-br from-[#131f3f] to-[#0f172e]">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-1.5">
-            <span class="text-lg">⏱️</span>
-            <span class="text-xs font-bold text-amber-400 uppercase">Descanso</span>
+        <div class="flex items-center justify-between gap-1">
+          <div class="flex items-center gap-1 flex-shrink-0">
+            <span class="text-base">⏱️</span>
+            <span class="text-[11px] font-black text-amber-400 uppercase">Descanso</span>
           </div>
-          <!-- Display Grande do Timer -->
-          <span class="text-3xl sm:text-4xl font-mono font-black text-amber-400 drop-shadow" id="timerDisplay">01:00</span>
+          <!-- Display do Timer -->
+          <span class="text-2xl sm:text-3xl font-mono font-black text-amber-400 drop-shadow px-1" id="timerDisplay">01:00</span>
           <!-- Controles Rápidos -->
-          <div class="flex items-center gap-1">
-            <button type="button" onclick="iniciarTimer()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-black text-xs rounded-lg active:scale-95 shadow">▶ Iniciar</button>
-            <button type="button" onclick="pausarTimer()" class="px-2.5 py-1.5 bg-slate-800 text-amber-300 font-bold text-xs rounded-lg active:scale-95">⏸</button>
-            <button type="button" onclick="resetarTimer()" class="px-2.5 py-1.5 bg-slate-800 text-red-400 font-bold text-xs rounded-lg active:scale-95">⏹</button>
+          <div class="flex items-center gap-1 flex-shrink-0">
+            <button type="button" onclick="iniciarTimer()" class="px-2.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-black text-xs rounded-lg active:scale-95 shadow">▶ Iniciar</button>
+            <button type="button" onclick="pausarTimer()" class="px-2 py-1.5 bg-slate-800 text-amber-300 font-bold text-xs rounded-lg active:scale-95">⏸</button>
+            <button type="button" onclick="resetarTimer()" class="px-2 py-1.5 bg-slate-800 text-red-400 font-bold text-xs rounded-lg active:scale-95">⏹</button>
           </div>
         </div>
         <!-- Presets Rápidos -->
@@ -263,24 +263,24 @@
   <!-- ========================================== -->
   <div id="telaNutricao" class="hidden max-w-5xl mx-auto p-3 sm:p-5 space-y-4">
     
-    <!-- Topo da Nutrição -->
-    <header class="flex items-center justify-between py-1 border-b border-slate-800/80 pb-3">
-      <div class="flex items-center gap-2 sm:gap-3">
-        <button type="button" onclick="navegarPara('telaHome')" class="text-xs sm:text-sm bg-[#131f3f] px-3.5 py-2 rounded-xl border border-slate-700 text-emerald-300 font-bold active:scale-95 shadow">
-          ⬅ Início
-        </button>
-        <div class="flex items-center gap-2">
-          <img src="./icone_nutricao.jpg?v=6" alt="Nutrição" class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl border border-emerald-400/60 object-cover shadow">
-          <div>
-            <h1 class="text-base sm:text-xl font-black text-white leading-tight">Plano de Nutrição</h1>
-            <span class="text-[10px] sm:text-xs text-emerald-400 font-extrabold tracking-wider">COMBUSTÍVEL DIÁRIO</span>
+    <!-- Topo da Nutrição Inteligente (Sem quebras no celular) -->
+    <header class="py-1 border-b border-slate-800/80 pb-3">
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 min-w-0">
+          <button type="button" onclick="navegarPara('telaHome')" class="bg-[#131f3f] hover:bg-[#1a2b56] p-2 sm:px-3 sm:py-2 rounded-xl border border-slate-700 text-emerald-300 font-bold flex items-center gap-1 active:scale-95 shadow flex-shrink-0">
+            <span class="text-base leading-none">⬅</span> <span class="hidden sm:inline text-xs">Início</span>
+          </button>
+          <img src="./icone_nutricao.jpg?v=7" alt="Nutrição" class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl border border-emerald-400/70 object-cover shadow flex-shrink-0">
+          <div class="min-w-0">
+            <h1 class="text-sm sm:text-lg font-black text-white leading-tight truncate">Plano Nutricional</h1>
+            <span class="text-[9px] sm:text-xs text-emerald-400 font-black tracking-wider block">COMBUSTÍVEL DIÁRIO</span>
           </div>
         </div>
+        <button type="button" onclick="adicionarNovaRefeicao()" 
+                class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-black px-3 py-1.5 sm:py-2 rounded-xl flex items-center gap-1 shadow active:scale-95 flex-shrink-0">
+          <span class="text-base leading-none">+</span> <span>Refeição</span>
+        </button>
       </div>
-      <button type="button" onclick="adicionarNovaRefeicao()" 
-              class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-black px-4 py-2 rounded-xl flex items-center gap-1 shadow active:scale-95">
-        <span>+</span> Nova Refeição
-      </button>
     </header>
 
     <!-- Resumo de Hidratação 100% Ajustável -->
