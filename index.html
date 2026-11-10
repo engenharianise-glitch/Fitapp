@@ -385,27 +385,33 @@
   <!-- ========================================== -->
   <!-- BARRA DE NAVEGAÇÃO FIXA NO RODAPÉ (BOTTOM BAR) -->
   <!-- ========================================== -->
-  <nav class="fixed bottom-0 left-0 right-0 z-40 bg-[#0d172e]/95 backdrop-blur-md border-t border-slate-800 shadow-2xl">
-    <div class="max-w-md mx-auto grid grid-cols-3 py-2 px-4 text-center">
+  <nav class="fixed bottom-0 left-0 right-0 z-40 bg-[#0a1122]/95 backdrop-blur-lg border-t border-slate-800 shadow-2xl">
+    <div class="max-w-md mx-auto grid grid-cols-3 py-2 px-3 text-center">
       
       <button type="button" onclick="navegarPara('telaHome')" id="navHome" 
-              class="flex flex-col items-center justify-center text-slate-400 hover:text-amber-400 transition-colors py-1 group">
-        <span class="text-xl group-hover:scale-110 transition-transform">🏠</span>
-        <span class="text-[11px] font-bold mt-0.5">Início</span>
+              class="flex flex-col items-center justify-center text-slate-400 hover:text-amber-400 transition-all py-1">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+        </svg>
+        <span class="text-[11px] font-bold tracking-tight">Início</span>
       </button>
 
       <button type="button" onclick="navegarPara('telaTreino')" id="navTreino" 
-              class="flex flex-col items-center justify-center text-slate-400 hover:text-blue-400 transition-colors py-1 relative group">
-        <span class="text-xl group-hover:scale-110 transition-transform">🏋️</span>
-        <span class="text-[11px] font-bold mt-0.5">Treino</span>
-        <span id="badgeNavTreino" class="absolute top-0 right-6 bg-blue-600 text-white text-[9px] font-black px-1.5 py-0.2 rounded-full hidden">0</span>
+              class="flex flex-col items-center justify-center text-slate-400 hover:text-blue-400 transition-all py-1 relative">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10M7 5v14M17 5v14M21 7v10M7 12h10"/>
+        </svg>
+        <span class="text-[11px] font-bold tracking-tight">Treino</span>
+        <span id="badgeNavTreino" class="absolute -top-0.5 right-5 sm:right-7 bg-blue-600 text-white text-[9px] font-black px-1.5 py-0.2 rounded-full hidden">0</span>
       </button>
 
       <button type="button" onclick="navegarPara('telaNutricao')" id="navNutricao" 
-              class="flex flex-col items-center justify-center text-slate-400 hover:text-emerald-400 transition-colors py-1 relative group">
-        <span class="text-xl group-hover:scale-110 transition-transform">🥗</span>
-        <span class="text-[11px] font-bold mt-0.5">Dieta</span>
-        <span id="badgeNavNutricao" class="absolute top-0 right-6 bg-emerald-600 text-white text-[9px] font-black px-1.5 py-0.2 rounded-full hidden">0</span>
+              class="flex flex-col items-center justify-center text-slate-400 hover:text-emerald-400 transition-all py-1 relative">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 009-9H3a9 9 0 009 9zM12 3v9M7 6l5 6M17 6l-5 6"/>
+        </svg>
+        <span class="text-[11px] font-bold tracking-tight">Dieta</span>
+        <span id="badgeNavNutricao" class="absolute -top-0.5 right-5 sm:right-7 bg-emerald-600 text-white text-[9px] font-black px-1.5 py-0.2 rounded-full hidden">0</span>
       </button>
 
     </div>
@@ -563,61 +569,62 @@
           const div = document.createElement('div');
           div.className = `card-dark rounded-xl p-3 sm:p-3.5 transition-all border ${ex.feito ? 'opacity-70 border-emerald-500/50 bg-[#0c1e33]' : 'border-slate-800/90 shadow'}`;
           div.innerHTML = `
-            <!-- Linha 1: Checkbox, Nome e Ações -->
-            <div class="flex items-center justify-between gap-2 border-b border-slate-800/80 pb-2 mb-2">
-              <div class="flex items-center gap-2.5 flex-1 min-w-0">
+            <!-- Topo: Checkbox, Nome Completo sem corte e Botões -->
+            <div class="flex items-start justify-between gap-2.5 pb-2.5 mb-2.5 border-b border-slate-800/80">
+              <div class="flex items-start gap-2.5 flex-1 min-w-0">
                 <input type="checkbox" ${ex.feito ? 'checked' : ''} onchange="toggleFeitoA(${idx})" 
-                       class="w-5 h-5 sm:w-6 sm:h-6 rounded bg-slate-900 border-slate-600 text-blue-600 focus:ring-0 cursor-pointer flex-shrink-0">
+                       class="mt-1 w-5 h-5 rounded-md bg-slate-900 border-slate-600 text-blue-600 focus:ring-0 cursor-pointer flex-shrink-0">
                 <input type="text" value="${ex.nome}" onchange="dadosTreinoA[${idx}].nome = this.value; salvarLocal();"
-                       class="font-black text-white text-sm sm:text-lg bg-transparent focus:outline-none w-full truncate border-b border-transparent focus:border-blue-500" placeholder="Nome do exercício">
+                       class="font-black text-white text-sm sm:text-base bg-transparent focus:outline-none w-full border-b border-transparent focus:border-blue-500 leading-snug" placeholder="Nome do exercício">
               </div>
-              <div class="flex items-center gap-1.5 flex-shrink-0">
+              <div class="flex items-center gap-1.5 flex-shrink-0 pt-0.5">
                 <button type="button" onclick="toggleFeitoA(${idx})" 
-                        class="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg font-black text-xs transition-all active:scale-95 ${ex.feito ? 'bg-emerald-600 text-white shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'}">
+                        class="px-2.5 py-1 rounded-lg font-black text-xs transition-all active:scale-95 ${ex.feito ? 'bg-emerald-600 text-white shadow' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'}">
                   ${ex.feito ? '✓ Feito' : 'Marcar'}
                 </button>
                 <button type="button" onclick="removerExercicioA(${idx})" title="Excluir"
-                        class="p-1 sm:p-1.5 rounded-lg bg-slate-800/80 hover:bg-red-900/60 text-slate-400 hover:text-red-300 active:scale-90 text-xs font-bold">
+                        class="p-1 rounded-lg bg-slate-800/60 hover:bg-red-900/60 text-slate-400 hover:text-red-300 active:scale-90 text-xs font-bold">
                   ✕
                 </button>
               </div>
             </div>
 
-            <!-- Linha 2: Grade com Números Grandes e Histórico -->
-            <div class="grid grid-cols-12 gap-2 items-center">
-              <div class="col-span-4 bg-[#0d172e] p-2 rounded-lg border border-slate-800/80">
-                <span class="text-[10px] text-slate-400 block font-bold uppercase leading-tight">Séries x Reps</span>
+            <!-- Grade com os 3 Dados (Limpa, alinhada e sem quebras estranhas no celular) -->
+            <div class="grid grid-cols-3 gap-2 text-center">
+              <!-- Reps -->
+              <div class="bg-[#0a1329] p-2 rounded-xl border border-slate-800 flex flex-col justify-center items-center">
+                <span class="text-[9px] sm:text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-0.5">SÉRIES x REPS</span>
                 <input type="text" value="${ex.reps}" onchange="dadosTreinoA[${idx}].reps = this.value; salvarLocal();"
-                       class="bg-transparent w-full text-sm sm:text-base font-black text-slate-100 focus:outline-none">
+                       class="bg-transparent w-full text-center text-xs sm:text-sm font-black text-slate-100 focus:outline-none">
               </div>
 
-              <div class="col-span-4 bg-[#0d172e] p-2 rounded-lg border border-slate-800/80 flex items-center justify-between">
-                <div>
-                  <div class="flex items-center gap-1">
-                    <span class="text-[10px] text-slate-400 font-bold uppercase leading-tight">Atual (kg)</span>
-                    ${evolucao > 0 ? `<span class="text-[9px] text-emerald-400 font-bold">+${evolucao}kg</span>` : ''}
-                  </div>
+              <!-- Carga Atual -->
+              <div class="bg-[#0a1329] p-2 rounded-xl border border-slate-800 flex flex-col justify-center items-center">
+                <span class="text-[9px] sm:text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-0.5">CARGA ATUAL</span>
+                <div class="flex items-center justify-center gap-0.5">
                   <input type="number" step="0.5" value="${ex.carga}" onchange="dadosTreinoA[${idx}].cargaAnt = dadosTreinoA[${idx}].carga; dadosTreinoA[${idx}].carga = parseFloat(this.value)||0; renderizarExercicios();"
-                         class="bg-transparent w-full text-base sm:text-xl font-black text-white focus:outline-none">
+                         class="bg-transparent text-center text-sm sm:text-base font-black text-white focus:outline-none w-12">
+                  <span class="text-[10px] font-bold text-slate-400">kg</span>
                 </div>
-                <span class="text-xs text-slate-500 font-bold">kg</span>
+                ${evolucao > 0 ? `<span class="text-[8px] bg-emerald-500/20 text-emerald-400 px-1 rounded font-black mt-0.5">+${evolucao}kg</span>` : ''}
               </div>
 
-              <div class="col-span-4 bg-emerald-950/80 p-2 rounded-lg border border-emerald-500/40 flex items-center justify-between">
-                <div>
-                  <span class="text-[10px] text-emerald-400 block font-bold uppercase leading-tight">Próx (+${(pct*100).toFixed(0)}%)</span>
-                  <span class="text-base sm:text-xl font-black text-emerald-300">${proxima}</span>
+              <!-- Próxima Carga -->
+              <div class="bg-emerald-950/60 p-2 rounded-xl border border-emerald-500/40 flex flex-col justify-center items-center">
+                <span class="text-[9px] sm:text-[10px] text-emerald-400 font-bold uppercase tracking-wider block mb-0.5">PRÓX (+${(pct*100).toFixed(0)}%)</span>
+                <div class="flex items-center justify-center gap-0.5">
+                  <span class="text-sm sm:text-base font-black text-emerald-300">${proxima}</span>
+                  <span class="text-[10px] font-bold text-emerald-400">kg</span>
                 </div>
-                <span class="text-xs text-emerald-400 font-bold">kg</span>
               </div>
             </div>
 
-            <!-- Linha 3: Anotação Compacta -->
-            <div class="mt-2 pt-1.5 border-t border-slate-800/60 flex items-center justify-between">
+            <!-- Linha de Observações / Carga Anterior -->
+            <div class="flex items-center justify-between gap-2 mt-2 pt-1.5 border-t border-slate-800/60">
               <input type="text" value="${ex.obs || ''}" onchange="dadosTreinoA[${idx}].obs = this.value; salvarLocal();"
-                     class="w-full bg-transparent text-xs text-slate-400 placeholder-slate-600 focus:outline-none focus:text-slate-200" 
-                     placeholder="+ Adicionar observação (ex: banco 30°, drop-set...)">
-              ${ex.cargaAnt ? `<span class="text-[10px] text-slate-500 font-semibold whitespace-nowrap pl-2">Ant: ${ex.cargaAnt}kg</span>` : ''}
+                     class="w-full bg-transparent text-[11px] sm:text-xs text-slate-400 placeholder-slate-600 focus:outline-none focus:text-slate-200" 
+                     placeholder="+ Anotação (banco 30°, drop-set...)">
+              ${ex.cargaAnt ? `<span class="text-[10px] text-slate-500 font-medium whitespace-nowrap pl-1">Ant: ${ex.cargaAnt}kg</span>` : ''}
             </div>
           `;
           container.appendChild(div);
@@ -653,12 +660,12 @@
           });
 
           div.innerHTML = `
-            <div class="flex items-center justify-between gap-2 border-b border-slate-800/80 pb-2 mb-2">
-              <div class="flex items-center gap-2.5 flex-1 min-w-0">
+            <div class="flex items-start justify-between gap-2.5 pb-2.5 mb-2.5 border-b border-slate-800/80">
+              <div class="flex items-start gap-2.5 flex-1 min-w-0">
                 <input type="checkbox" ${ex.feito ? 'checked' : ''} onchange="toggleFeitoB(${idx})" 
-                       class="w-5 h-5 sm:w-6 sm:h-6 rounded bg-slate-900 border-slate-600 text-blue-600 focus:ring-0 cursor-pointer flex-shrink-0">
+                       class="mt-1 w-5 h-5 rounded-md bg-slate-900 border-slate-600 text-blue-600 focus:ring-0 cursor-pointer flex-shrink-0">
                 <input type="text" value="${ex.nome}" onchange="dadosTreinoB[${idx}].nome = this.value; salvarLocal();"
-                       class="font-black text-white text-sm sm:text-lg bg-transparent focus:outline-none w-full truncate border-b border-transparent focus:border-blue-500" placeholder="Nome do exercício">
+                       class="font-black text-white text-sm sm:text-base bg-transparent focus:outline-none w-full border-b border-transparent focus:border-blue-500 leading-snug" placeholder="Nome do exercício">
               </div>
               <div class="flex items-center gap-1.5 flex-shrink-0">
                 <button type="button" onclick="toggleFeitoB(${idx})" 
