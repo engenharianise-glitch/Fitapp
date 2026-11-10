@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Controle de Treinos</title>
+  <title>FitApp - Treino & Nutrição</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0b132b">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -21,61 +21,90 @@
   <!-- ========================================== -->
   <!-- TELA 1: HOME DE ENTRADA (TREINO vs NUTRIÇÃO) -->
   <!-- ========================================== -->
-  <div id="telaHome" class="hidden min-h-screen flex-col justify-between p-6 max-w-md mx-auto">
-    <div class="pt-8">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/60 border border-blue-500/30 text-blue-300 text-xs font-bold mb-4">
-        <span>⚡</span> Antigravity Health & Fitness
+  <div id="telaHome" class="min-h-screen flex flex-col justify-between p-6 max-w-md mx-auto">
+    
+    <!-- Hero com Logo Oficial e Slogan -->
+    <div class="pt-4 text-center">
+      <div class="relative inline-block mb-3">
+        <img src="./logo_emblema.jpg" alt="Logo FitApp Don't Give Up" 
+             class="w-36 h-36 mx-auto rounded-full shadow-2xl border-2 border-amber-400/40 object-cover">
+        <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-[10px] font-black px-2.5 py-0.5 rounded-full shadow tracking-wider uppercase whitespace-nowrap">
+          Don't Give Up
+        </span>
       </div>
-      <h1 class="text-3xl font-black text-white tracking-tight">O que vamos evoluir hoje?</h1>
-      <p class="text-slate-400 text-sm mt-1">Selecione o módulo para iniciar</p>
+
+      <h1 class="text-2xl font-black text-white tracking-tight mt-3">Treino & Nutrição</h1>
+      <p class="text-amber-400/90 text-xs font-bold tracking-wide mt-1">FORÇA, DISCIPLINA E COMBUSTÍVEL</p>
+      <p class="text-slate-400 text-xs mt-1.5 max-w-xs mx-auto leading-relaxed">
+        "O corpo é o resultado do treino. A comida é o combustível para vencer."
+      </p>
     </div>
 
-    <div class="space-y-4 my-8">
+    <!-- Módulos de Entrada -->
+    <div class="space-y-4 my-6">
       <button type="button" onclick="navegarPara('telaTreino')"
-              class="w-full text-left bg-gradient-to-br from-[#1e3a62] to-[#131f3f] text-white p-6 rounded-3xl shadow-xl border border-blue-500/30 active:scale-98 transition-all flex items-center justify-between group">
-        <div>
-          <div class="w-12 h-12 bg-blue-600/20 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">🏋️‍♂️</div>
-          <h2 class="text-xl font-bold">Controle de Treinos</h2>
-          <p class="text-xs text-blue-200 mt-1">Treino A normal, B ondulatório, cronômetro e cargas</p>
+              class="w-full text-left bg-gradient-to-br from-[#18284d] to-[#111c38] text-white p-4 sm:p-5 rounded-3xl shadow-xl border border-blue-500/30 active:scale-98 transition-all flex items-center justify-between group">
+        <div class="flex items-center gap-4">
+          <div class="relative flex-shrink-0">
+            <img src="./icone_treino.jpg" alt="Controle de Treinos" 
+                 class="w-14 h-14 rounded-2xl object-cover border-2 border-amber-400/60 shadow-lg group-hover:scale-105 transition-transform">
+            <span class="absolute -bottom-1 -right-1 bg-blue-600 text-[10px] w-5 h-5 rounded-full flex items-center justify-center border border-slate-900 shadow">🏋️</span>
+          </div>
+          <div>
+            <h2 class="text-base sm:text-lg font-bold text-white">Controle de Treinos</h2>
+            <p class="text-xs text-blue-200/90 mt-0.5">Treino A normal, B ondulatório, cronômetro e cargas</p>
+          </div>
         </div>
-        <span class="text-2xl text-blue-400 font-light pr-2">➔</span>
+        <span class="text-xl text-blue-400 font-light pl-2 group-hover:translate-x-1 transition-transform">➔</span>
       </button>
 
       <button type="button" onclick="navegarPara('telaNutricao')"
-              class="w-full text-left bg-gradient-to-br from-emerald-900 to-[#131f3f] text-white p-6 rounded-3xl shadow-xl border border-emerald-500/30 active:scale-98 transition-all flex items-center justify-between group">
-        <div>
-          <div class="w-12 h-12 bg-emerald-600/20 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">🥗</div>
-          <h2 class="text-xl font-bold">Plano de Nutrição</h2>
-          <p class="text-xs text-emerald-200 mt-1">Diário alimentar, hidratação e refeições</p>
+              class="w-full text-left bg-gradient-to-br from-[#0e2a22] to-[#111c38] text-white p-4 sm:p-5 rounded-3xl shadow-xl border border-emerald-500/30 active:scale-98 transition-all flex items-center justify-between group">
+        <div class="flex items-center gap-4">
+          <div class="relative flex-shrink-0">
+            <img src="./icone_nutricao.jpg" alt="Plano de Nutrição" 
+                 class="w-14 h-14 rounded-2xl object-cover border-2 border-amber-400/60 shadow-lg group-hover:scale-105 transition-transform">
+            <span class="absolute -bottom-1 -right-1 bg-emerald-600 text-[10px] w-5 h-5 rounded-full flex items-center justify-center border border-slate-900 shadow">🥗</span>
+          </div>
+          <div>
+            <h2 class="text-base sm:text-lg font-bold text-white">Plano de Nutrição</h2>
+            <p class="text-xs text-emerald-200/90 mt-0.5">Diário alimentar, hidratação e refeições</p>
+          </div>
         </div>
-        <span class="text-2xl text-emerald-400 font-light pr-2">➔</span>
+        <span class="text-xl text-emerald-400 font-light pl-2 group-hover:translate-x-1 transition-transform">➔</span>
       </button>
     </div>
 
-    <div class="card-dark p-4 rounded-2xl text-xs text-slate-400 flex items-center justify-between">
+    <!-- Rodapé -->
+    <div class="card-dark p-3.5 rounded-2xl text-xs text-slate-400 flex items-center justify-between">
       <div class="flex items-center gap-2">
         <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span>Sistema Online & Sincronizado</span>
+        <span class="text-[11px]">Sistema Sincronizado</span>
       </div>
-      <span class="text-blue-400 font-bold">FitApp v2.0</span>
+      <span class="text-amber-400 font-bold text-[11px]">FitApp v2.1</span>
     </div>
   </div>
 
   <!-- ========================================== -->
-  <!-- TELA 2: CONTROLE DE TREINOS (DESIGN IDÊNTICO À FOTO) -->
+  <!-- TELA 2: CONTROLE DE TREINOS -->
   <!-- ========================================== -->
-  <div id="telaTreino" class="max-w-5xl mx-auto p-3 md:p-6 space-y-4">
+  <div id="telaTreino" class="hidden max-w-5xl mx-auto p-3 md:p-6 space-y-4">
 
-    <!-- Topo: Título + Progresso % + Botão Menu -->
+    <!-- Topo -->
     <header class="flex items-center justify-between py-2">
       <div class="flex items-center gap-3">
         <button type="button" onclick="navegarPara('telaHome')" class="text-xs bg-[#131f3f] hover:bg-[#1a2b56] px-3 py-1.5 rounded-lg border border-slate-700 text-blue-300 font-bold flex items-center gap-1 active:scale-95">
           ⬅ Início
         </button>
-        <h1 class="text-xl md:text-2xl font-black tracking-wide text-white">Controle de Treinos</h1>
+        <div class="flex items-center gap-2">
+          <img src="./icone_treino.jpg" alt="Treino" class="w-8 h-8 rounded-full border border-amber-400/60 object-cover shadow">
+          <div>
+            <h1 class="text-lg md:text-xl font-black text-white leading-tight">Controle de Treinos</h1>
+            <span class="text-[10px] text-amber-400 font-bold tracking-wider">DON'T GIVE UP</span>
+          </div>
+        </div>
       </div>
 
-      <!-- Badge de Progressão -->
       <div class="bg-[#131f3f] px-3 py-1.5 rounded-xl border border-slate-700 flex items-center gap-2">
         <span class="text-xs font-semibold text-slate-400">Progressão:</span>
         <input type="number" id="porcentagem" value="3" step="0.5" 
@@ -84,7 +113,7 @@
       </div>
     </header>
 
-    <!-- Dias da Semana (Seg, Ter, Qua, Qui, Sex, Sáb, Dom) -->
+    <!-- Dias da Semana -->
     <div class="card-dark rounded-xl p-1.5 flex gap-1 justify-between overflow-x-auto" id="seletorDias">
       <button type="button" class="dia-btn flex-1 py-2 text-xs font-bold rounded-lg bg-blue-600 text-white transition-all">Seg</button>
       <button type="button" class="dia-btn flex-1 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all">Ter</button>
@@ -95,7 +124,7 @@
       <button type="button" class="dia-btn flex-1 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all">Dom</button>
     </div>
 
-    <!-- Abas dos Treinos: Treino A - normal vs Treino B - ondulatório -->
+    <!-- Abas: Treino A vs Treino B -->
     <div class="card-dark rounded-xl p-1.5 grid grid-cols-2 gap-2">
       <button type="button" id="tabTreinoA" onclick="alternarModoTreino('A')"
               class="py-2.5 px-4 text-xs md:text-sm font-bold rounded-lg bg-blue-600 text-white shadow transition-all flex items-center justify-center gap-1">
@@ -107,44 +136,24 @@
       </button>
     </div>
 
-    <!-- Subtítulo Informativo do Treino Selecionado -->
     <div class="flex items-center justify-between text-xs text-slate-400 px-1 font-semibold">
       <span id="subtituloTreino">Treino A seg e quinta</span>
       <span id="dataHoje">Data: --/--/----</span>
     </div>
 
-    <!-- Barra de Ações Rápidas -->
+    <!-- Barra de Ações -->
     <div class="flex flex-wrap items-center gap-2">
       <button type="button" id="btnNovoExercicio" 
               class="bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-1 shadow transition-all">
         <span class="text-base leading-none">+</span> Novo exercício
       </button>
-
-      <button type="button" onclick="abrirHistorico()" 
-              class="card-dark hover:bg-[#1a2b56] text-slate-300 text-xs font-semibold px-3 py-2 rounded-lg transition-all">
-        Histórico
-      </button>
-
-      <button type="button" onclick="exportarBackup()" 
-              class="card-dark hover:bg-[#1a2b56] text-slate-300 text-xs font-semibold px-3 py-2 rounded-lg transition-all">
-        Exportar backup
-      </button>
-
-      <button type="button" onclick="restaurarBackup()" 
-              class="card-dark hover:bg-[#1a2b56] text-slate-300 text-xs font-semibold px-3 py-2 rounded-lg transition-all">
-        Restaurar backup
-      </button>
-
-      <button type="button" onclick="window.print()" 
-              class="card-dark hover:bg-[#1a2b56] text-slate-300 text-xs font-semibold px-3 py-2 rounded-lg transition-all">
-        Imprimir / PDF
-      </button>
+      <button type="button" onclick="exportarBackup()" class="card-dark hover:bg-[#1a2b56] text-slate-300 text-xs font-semibold px-3 py-2 rounded-lg">Exportar backup</button>
+      <button type="button" onclick="restaurarBackup()" class="card-dark hover:bg-[#1a2b56] text-slate-300 text-xs font-semibold px-3 py-2 rounded-lg">Restaurar backup</button>
+      <button type="button" onclick="window.print()" class="card-dark hover:bg-[#1a2b56] text-slate-300 text-xs font-semibold px-3 py-2 rounded-lg">Imprimir / PDF</button>
     </div>
 
-    <!-- Painel Duplo: Volume feito/planejado & Descanso (Cronômetro) -->
+    <!-- Volume & Descanso -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-      
-      <!-- Card 1: Volume feito / planejado -->
       <div class="card-dark rounded-xl p-4 flex flex-col justify-between">
         <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Volume feito / planejado</span>
         <div class="my-2">
@@ -153,13 +162,11 @@
         <span class="text-xs text-slate-400" id="statusExerciciosFeitos">0 de 10 exercícios feitos hoje</span>
       </div>
 
-      <!-- Card 2: Descanso (Cronômetro) -->
       <div class="card-dark rounded-xl p-4 flex flex-col justify-between">
         <div class="flex items-center justify-between">
           <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Descanso</span>
           <span class="text-2xl md:text-3xl font-mono font-black text-amber-400" id="timerDisplay">01:00</span>
         </div>
-
         <div class="flex items-center justify-between gap-2 mt-3">
           <select id="tempoDescansoSelect" class="input-dark text-xs font-bold rounded-lg px-2 py-1.5 focus:outline-none">
             <option value="30">30 s</option>
@@ -168,18 +175,17 @@
             <option value="90">90 s</option>
             <option value="120">120 s</option>
           </select>
-
           <div class="flex items-center gap-1.5">
-            <button type="button" onclick="iniciarTimer()" class="bg-blue-600 hover:bg-blue-700 text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold active:scale-90" title="Iniciar">▶</button>
-            <button type="button" onclick="pausarTimer()" class="card-dark hover:bg-slate-700 text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold active:scale-90" title="Pausar">⏸</button>
-            <button type="button" onclick="resetarTimer()" class="card-dark hover:bg-slate-700 text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold active:scale-90" title="Resetar">⏹</button>
+            <button type="button" onclick="iniciarTimer()" class="bg-blue-600 hover:bg-blue-700 text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold active:scale-90">▶</button>
+            <button type="button" onclick="pausarTimer()" class="card-dark hover:bg-slate-700 text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold active:scale-90">⏸</button>
+            <button type="button" onclick="resetarTimer()" class="card-dark hover:bg-slate-700 text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold active:scale-90">⏹</button>
           </div>
         </div>
         <span class="text-[10px] text-slate-500 mt-2">Inicia ao marcar "Feito"</span>
       </div>
     </div>
 
-    <!-- Acordeom: Calculadora de 1RM (Epley) -->
+    <!-- Calculadora 1RM -->
     <details class="card-dark rounded-xl p-3 text-xs">
       <summary class="font-bold text-slate-300 cursor-pointer select-none">▶ Calculadora de 1RM (Epley)</summary>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3 pt-3 border-t border-slate-800">
@@ -198,10 +204,8 @@
       <p class="mt-2 text-emerald-400 font-bold" id="resultado1RM"></p>
     </details>
 
-    <!-- CONTAINER DOS EXERCÍCIOS -->
-    <div id="containerExercicios" class="space-y-3">
-      <!-- Injetado dinamicamente via JavaScript -->
-    </div>
+    <!-- Exercícios -->
+    <div id="containerExercicios" class="space-y-3"></div>
   </div>
 
   <!-- ========================================== -->
@@ -212,11 +216,13 @@
       <button type="button" onclick="navegarPara('telaHome')" class="text-xs bg-[#131f3f] px-3 py-1.5 rounded-lg border border-slate-700 text-emerald-300 font-bold active:scale-95">
         ⬅ Início
       </button>
-      <h1 class="text-xl font-bold text-white">Plano de Nutrição</h1>
+      <div class="flex items-center gap-2">
+        <img src="./icone_nutricao.jpg" alt="Nutrição" class="w-8 h-8 rounded-full border border-emerald-400/60 object-cover shadow">
+        <h1 class="text-lg font-bold text-white">Plano de Nutrição</h1>
+      </div>
       <span class="text-xs bg-emerald-900/60 px-2.5 py-1 rounded-lg border border-emerald-500/30 font-semibold text-emerald-300">Hoje</span>
     </header>
 
-    <!-- Contador de Água -->
     <div class="card-dark rounded-2xl p-4 flex items-center justify-between">
       <div>
         <span class="text-xs font-bold text-slate-400 uppercase">💧 Hidratação Diária</span>
@@ -228,7 +234,6 @@
       </div>
     </div>
 
-    <!-- Refeições -->
     <div class="space-y-3">
       <div class="card-dark rounded-2xl p-4">
         <span class="font-bold text-sm text-slate-200 block mb-2">☕ Café da Manhã (07:30)</span>
@@ -249,9 +254,6 @@
     </div>
   </div>
 
-  <!-- ========================================== -->
-  <!-- JAVASCRIPT: LÓGICA COMPLETA REATIVA -->
-  <!-- ========================================== -->
   <script>
     let modoTreinoAtual = 'A';
     let timerInterval = null;
@@ -588,10 +590,6 @@
         reader.readAsText(file);
       };
       input.click();
-    }
-
-    function abrirHistorico() {
-      alert("Histórico: Em breve sincronização direta com Supabase!");
     }
 
     document.querySelectorAll('.dia-btn').forEach(btn => {
