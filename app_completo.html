@@ -22,23 +22,44 @@
 <body class="min-h-screen text-slate-100 antialiased font-sans pb-16">
 
   <!-- ========================================== -->
+  <!-- TELA DE ABERTURA (SPLASH SCREEN GIGANTE) -->
+  <!-- ========================================== -->
+  <div id="splashScreen" class="fixed inset-0 z-50 bg-[#0b132b] flex flex-col items-center justify-center p-6 transition-opacity duration-700 select-none">
+    <div class="text-center max-w-xl mx-auto">
+      <div class="relative inline-block mb-6 animate-pulse">
+        <img src="./logo_emblema.jpg?v=5" alt="FitApp Don't Give Up" 
+             class="w-72 h-72 sm:w-96 sm:h-96 md:w-[460px] md:h-[460px] mx-auto rounded-3xl md:rounded-[48px] shadow-2xl border-4 border-amber-400/80 object-cover">
+        <span class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-sm sm:text-xl font-black px-8 py-2 rounded-full shadow-2xl tracking-widest uppercase whitespace-nowrap">
+          DON'T GIVE UP
+        </span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight mt-6">Treino & Nutrição</h1>
+      <p class="text-amber-400 text-base sm:text-2xl font-black tracking-widest mt-2 uppercase">FORÇA, DISCIPLINA E COMBUSTÍVEL</p>
+      <p class="text-slate-300 text-sm sm:text-xl font-bold mt-3 max-w-lg mx-auto leading-relaxed italic">
+        "O corpo é o resultado do treino. A comida é o combustível para vencer."
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ========================================== -->
   <!-- TELA 1: HOME DE ENTRADA (TREINO vs NUTRIÇÃO) -->
   <!-- ========================================== -->
   <div id="telaHome" class="min-h-screen flex flex-col justify-between p-4 sm:p-8 max-w-2xl md:max-w-3xl mx-auto">
     
-    <!-- Hero com Logo Oficial e Slogan Aumentado -->
-    <div class="pt-2 sm:pt-6 text-center">
-      <div class="relative inline-block mb-3 sm:mb-5">
-        <img src="./logo_emblema.jpg?v=4" alt="Logo FitApp Don't Give Up" 
-             class="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 mx-auto rounded-3xl md:rounded-[40px] shadow-2xl border-4 border-amber-400/70 object-cover">
-        <span class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-xs sm:text-base font-black px-5 py-1 rounded-full shadow-2xl tracking-wider uppercase whitespace-nowrap">
-          Don't Give Up
+    <!-- Hero com Logo Oficial e Slogan Aumentado GIGANTE -->
+    <div class="pt-4 sm:pt-10 text-center">
+      <div class="relative inline-block mb-6 sm:mb-8">
+        <img src="./logo_emblema.jpg?v=5" alt="Logo FitApp Don't Give Up" 
+             class="w-72 h-72 sm:w-96 sm:h-96 md:w-[440px] md:h-[440px] mx-auto rounded-3xl md:rounded-[48px] shadow-2xl border-4 border-amber-400/80 object-cover">
+        <span class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-sm sm:text-xl font-black px-8 py-2 rounded-full shadow-2xl tracking-widest uppercase whitespace-nowrap">
+          DON'T GIVE UP
         </span>
       </div>
 
-      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight mt-3 sm:mt-5">Treino & Nutrição</h1>
-      <p class="text-amber-400 text-sm sm:text-xl font-black tracking-widest mt-1.5 uppercase">Força, Disciplina e Combustível</p>
-      <p class="text-slate-300 text-xs sm:text-base mt-2 max-w-xl mx-auto leading-relaxed">
+      <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight mt-6">Treino & Nutrição</h1>
+      <p class="text-amber-400 text-base sm:text-2xl font-black tracking-widest mt-2.5 uppercase">FORÇA, DISCIPLINA E COMBUSTÍVEL</p>
+      <p class="text-slate-200 text-sm sm:text-xl font-bold mt-3 sm:mt-4 max-w-2xl mx-auto leading-relaxed">
         "O corpo é o resultado do treino. A comida é o combustível para vencer."
       </p>
     </div>
@@ -821,6 +842,18 @@
     });
 
     document.getElementById('porcentagem').addEventListener('input', renderizarExercicios);
+
+    
+    // Esconder Splash Screen após 1.4s
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const splash = document.getElementById('splashScreen');
+        if (splash) {
+          splash.style.opacity = '0';
+          setTimeout(() => splash.style.display = 'none', 700);
+        }
+      }, 1400);
+    });
 
     carregarLocal();
     renderizarExercicios();
