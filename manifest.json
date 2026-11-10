@@ -1,17 +1,29 @@
 {
   "name": "FitApp - Treino & Nutrição",
   "short_name": "FitApp",
-  "description": "Controle de treinos, sobrecarga progressiva e nutrição",
+  "description": "Don't Give Up - Treino, progressão de carga e nutrição",
   "start_url": "./app_completo.html",
   "display": "standalone",
-  "background_color": "#1e3a62",
-  "theme_color": "#1e3a62",
+  "background_color": "#0b132b",
+  "theme_color": "#0b132b",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/2964/2964514.png",
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./logo_emblema.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
       "purpose": "any maskable"
     }
   ]
