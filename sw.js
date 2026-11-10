@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fitapp-cache-v4';
+const CACHE_NAME = 'fitapp-cache-v5';
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();
