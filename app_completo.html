@@ -16,6 +16,7 @@
     .card-dark { background-color: #131f3f; border: 1px solid #1e2d5a; }
     .input-dark { background-color: #0d172e; border: 1px solid #223468; color: #f8fafc; }
     .input-dark:focus { border-color: #3b82f6; outline: none; }
+    .preset-active { background-color: #f59e0b !important; color: #020617 !important; border-color: #fbbf24 !important; font-weight: 900 !important; }
   </style>
 </head>
 <body class="min-h-screen text-slate-100 antialiased font-sans pb-16">
@@ -23,32 +24,32 @@
   <!-- ========================================== -->
   <!-- TELA 1: HOME DE ENTRADA (TREINO vs NUTRIÇÃO) -->
   <!-- ========================================== -->
-  <div id="telaHome" class="min-h-screen flex flex-col justify-between p-4 sm:p-6 md:p-10 max-w-xl md:max-w-2xl mx-auto">
+  <div id="telaHome" class="min-h-screen flex flex-col justify-between p-4 sm:p-8 md:p-12 max-w-2xl md:max-w-3xl mx-auto">
     
-    <!-- Hero com Logo Oficial e Slogan -->
-    <div class="pt-2 sm:pt-6 text-center">
-      <div class="relative inline-block mb-4">
-        <img src="./logo_emblema.jpg?v=2" alt="Logo FitApp Don't Give Up" 
-             class="w-56 h-56 sm:w-72 sm:h-72 md:w-88 md:h-88 mx-auto rounded-3xl md:rounded-[40px] shadow-2xl border-4 border-amber-400/60 object-cover">
-        <span class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-xs sm:text-base font-black px-5 py-1.5 rounded-full shadow-xl tracking-wider uppercase whitespace-nowrap">
+    <!-- Hero com Logo Oficial e Slogan AUMENTADO (Red Box) -->
+    <div class="pt-4 sm:pt-8 text-center">
+      <div class="relative inline-block mb-4 sm:mb-6">
+        <img src="./logo_emblema.jpg?v=3" alt="Logo FitApp Don't Give Up" 
+             class="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 mx-auto rounded-3xl md:rounded-[44px] shadow-2xl border-4 border-amber-400/70 object-cover">
+        <span class="absolute -bottom-3.5 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-xs sm:text-base md:text-lg font-black px-6 py-1.5 rounded-full shadow-2xl tracking-wider uppercase whitespace-nowrap">
           Don't Give Up
         </span>
       </div>
 
-      <h1 class="text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mt-4">Treino & Nutrição</h1>
-      <p class="text-amber-400 text-sm sm:text-base md:text-lg font-black tracking-widest mt-1.5 uppercase">Força, Disciplina e Combustível</p>
-      <p class="text-slate-300 text-xs sm:text-sm md:text-base mt-2 max-w-lg mx-auto leading-relaxed">
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mt-4 sm:mt-6">Treino & Nutrição</h1>
+      <p class="text-amber-400 text-sm sm:text-xl md:text-2xl font-black tracking-widest mt-2 uppercase">Força, Disciplina e Combustível</p>
+      <p class="text-slate-300 text-xs sm:text-base md:text-lg mt-2 sm:mt-3 max-w-xl mx-auto leading-relaxed">
         "O corpo é o resultado do treino. A comida é o combustível para vencer."
       </p>
     </div>
 
-    <!-- Módulos de Entrada -->
-    <div class="space-y-4 sm:space-y-6 my-6 sm:my-8">
+    <!-- Módulos de Entrada AUMENTADOS -->
+    <div class="space-y-4 sm:space-y-6 my-6 sm:my-10">
       <button type="button" onclick="navegarPara('telaTreino')"
               class="w-full text-left bg-gradient-to-br from-[#18284d] to-[#111c38] hover:from-[#213768] hover:to-[#162347] text-white p-5 sm:p-7 md:p-8 rounded-3xl md:rounded-[36px] shadow-2xl border-2 border-blue-500/40 active:scale-98 transition-all flex items-center justify-between group">
         <div class="flex items-center gap-4 sm:gap-6">
           <div class="relative flex-shrink-0">
-            <img src="./icone_treino.jpg?v=2" alt="Controle de Treinos" 
+            <img src="./icone_treino.jpg?v=3" alt="Controle de Treinos" 
                  class="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-2xl md:rounded-3xl object-cover border-2 md:border-4 border-amber-400/80 shadow-2xl group-hover:scale-105 transition-transform">
             <span class="absolute -bottom-1 -right-1 bg-blue-600 text-white text-xs sm:text-sm w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center border-2 border-slate-900 shadow-md">🏋️</span>
           </div>
@@ -64,7 +65,7 @@
               class="w-full text-left bg-gradient-to-br from-[#0e2a22] to-[#111c38] hover:from-[#133a2f] hover:to-[#162347] text-white p-5 sm:p-7 md:p-8 rounded-3xl md:rounded-[36px] shadow-2xl border-2 border-emerald-500/40 active:scale-98 transition-all flex items-center justify-between group">
         <div class="flex items-center gap-4 sm:gap-6">
           <div class="relative flex-shrink-0">
-            <img src="./icone_nutricao.jpg?v=2" alt="Plano de Nutrição" 
+            <img src="./icone_nutricao.jpg?v=3" alt="Plano de Nutrição" 
                  class="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-2xl md:rounded-3xl object-cover border-2 md:border-4 border-amber-400/80 shadow-2xl group-hover:scale-105 transition-transform">
             <span class="absolute -bottom-1 -right-1 bg-emerald-600 text-white text-xs sm:text-sm w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center border-2 border-slate-900 shadow-md">🥗</span>
           </div>
@@ -78,136 +79,181 @@
     </div>
 
     <!-- Rodapé -->
-    <div class="card-dark p-3.5 rounded-2xl text-xs text-slate-400 flex items-center justify-between">
+    <div class="card-dark p-4 rounded-2xl text-xs sm:text-sm text-slate-400 flex items-center justify-between">
       <div class="flex items-center gap-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="text-[11px]">Sistema Sincronizado</span>
+        <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="text-xs sm:text-sm font-semibold">Sistema Sincronizado</span>
       </div>
-      <span class="text-amber-400 font-bold text-[11px]">FitApp v2.1</span>
+      <span class="text-amber-400 font-bold text-xs sm:text-sm">FitApp v2.2 - Tablet Edition</span>
     </div>
   </div>
 
   <!-- ========================================== -->
-  <!-- TELA 2: CONTROLE DE TREINOS -->
+  <!-- TELA 2: CONTROLE DE TREINOS (Yellow & Purple Box) -->
   <!-- ========================================== -->
-  <div id="telaTreino" class="hidden max-w-5xl mx-auto p-3 md:p-6 space-y-4">
+  <div id="telaTreino" class="hidden max-w-5xl mx-auto p-4 sm:p-6 md:p-8 space-y-5 sm:space-y-6">
 
-    <!-- Topo -->
-    <header class="flex items-center justify-between py-2">
-      <div class="flex items-center gap-3">
-        <button type="button" onclick="navegarPara('telaHome')" class="text-xs bg-[#131f3f] hover:bg-[#1a2b56] px-3 py-1.5 rounded-lg border border-slate-700 text-blue-300 font-bold flex items-center gap-1 active:scale-95">
+    <!-- Topo Ampliado -->
+    <header class="flex items-center justify-between py-2 border-b border-slate-800/80 pb-4">
+      <div class="flex items-center gap-3 sm:gap-4">
+        <button type="button" onclick="navegarPara('telaHome')" class="text-xs sm:text-sm md:text-base bg-[#131f3f] hover:bg-[#1a2b56] px-4 py-2.5 rounded-xl border border-slate-700 text-blue-300 font-bold flex items-center gap-2 active:scale-95 shadow">
           ⬅ Início
         </button>
-        <div class="flex items-center gap-2">
-          <img src="./icone_treino.jpg?v=2" alt="Treino" class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl border-2 border-amber-400/60 object-cover shadow-lg">
+        <div class="flex items-center gap-3">
+          <img src="./icone_treino.jpg?v=3" alt="Treino" class="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl border-2 border-amber-400/70 object-cover shadow-lg">
           <div>
-            <h1 class="text-lg md:text-xl font-black text-white leading-tight">Controle de Treinos</h1>
-            <span class="text-[10px] text-amber-400 font-bold tracking-wider">DON'T GIVE UP</span>
+            <h1 class="text-lg sm:text-2xl md:text-3xl font-black text-white leading-tight">Controle de Treinos</h1>
+            <span class="text-[11px] sm:text-xs text-amber-400 font-extrabold tracking-wider">DON'T GIVE UP</span>
           </div>
         </div>
       </div>
 
-      <div class="bg-[#131f3f] px-3 py-1.5 rounded-xl border border-slate-700 flex items-center gap-2">
-        <span class="text-xs font-semibold text-slate-400">Progressão:</span>
+      <div class="bg-[#131f3f] px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-2xl border border-slate-700 flex items-center gap-2 shadow">
+        <span class="text-xs sm:text-sm font-bold text-slate-300">Sobrecarga:</span>
         <input type="number" id="porcentagem" value="3" step="0.5" 
-               class="w-8 bg-transparent text-center font-bold text-emerald-400 focus:outline-none text-base">
-        <span class="font-bold text-emerald-400 text-sm">%</span>
+               class="w-10 sm:w-12 bg-transparent text-center font-black text-emerald-400 focus:outline-none text-base sm:text-xl">
+        <span class="font-black text-emerald-400 text-sm sm:text-base">%</span>
       </div>
     </header>
 
-    <!-- Dias da Semana -->
-    <div class="card-dark rounded-xl p-1.5 flex gap-1 justify-between overflow-x-auto" id="seletorDias">
-      <button type="button" class="dia-btn flex-1 py-2 text-xs font-bold rounded-lg bg-blue-600 text-white transition-all">Seg</button>
-      <button type="button" class="dia-btn flex-1 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all">Ter</button>
-      <button type="button" class="dia-btn flex-1 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all">Qua</button>
-      <button type="button" class="dia-btn flex-1 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all">Qui</button>
-      <button type="button" class="dia-btn flex-1 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all">Sex</button>
-      <button type="button" class="dia-btn flex-1 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all">Sáb</button>
-      <button type="button" class="dia-btn flex-1 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all">Dom</button>
+    <!-- Dias da Semana Ampliados -->
+    <div class="card-dark rounded-2xl p-2 flex gap-1.5 justify-between overflow-x-auto shadow" id="seletorDias">
+      <button type="button" class="dia-btn flex-1 py-3 sm:py-4 text-xs sm:text-base md:text-lg font-black rounded-xl bg-blue-600 text-white shadow transition-all">Seg</button>
+      <button type="button" class="dia-btn flex-1 py-3 sm:py-4 text-xs sm:text-base md:text-lg font-black rounded-xl text-slate-400 hover:text-white transition-all">Ter</button>
+      <button type="button" class="dia-btn flex-1 py-3 sm:py-4 text-xs sm:text-base md:text-lg font-black rounded-xl text-slate-400 hover:text-white transition-all">Qua</button>
+      <button type="button" class="dia-btn flex-1 py-3 sm:py-4 text-xs sm:text-base md:text-lg font-black rounded-xl text-slate-400 hover:text-white transition-all">Qui</button>
+      <button type="button" class="dia-btn flex-1 py-3 sm:py-4 text-xs sm:text-base md:text-lg font-black rounded-xl text-slate-400 hover:text-white transition-all">Sex</button>
+      <button type="button" class="dia-btn flex-1 py-3 sm:py-4 text-xs sm:text-base md:text-lg font-black rounded-xl text-slate-400 hover:text-white transition-all">Sáb</button>
+      <button type="button" class="dia-btn flex-1 py-3 sm:py-4 text-xs sm:text-base md:text-lg font-black rounded-xl text-slate-400 hover:text-white transition-all">Dom</button>
     </div>
 
-    <!-- Abas: Treino A vs Treino B -->
-    <div class="card-dark rounded-xl p-1.5 grid grid-cols-2 gap-2">
+    <!-- Abas: Treino A vs Treino B Ampliadas -->
+    <div class="card-dark rounded-2xl p-2 grid grid-cols-2 gap-2 sm:gap-3 shadow-lg">
       <button type="button" id="tabTreinoA" onclick="alternarModoTreino('A')"
-              class="py-2.5 px-4 text-xs md:text-sm font-bold rounded-lg bg-blue-600 text-white shadow transition-all flex items-center justify-center gap-1">
-        Treino A - normal
+              class="py-3.5 sm:py-4 md:py-5 px-4 text-xs sm:text-base md:text-lg font-black rounded-xl bg-blue-600 text-white shadow transition-all flex items-center justify-center gap-2">
+        <span>🏋️</span> Treino A - Normal (Carga Fixa)
       </button>
       <button type="button" id="tabTreinoB" onclick="alternarModoTreino('B')"
-              class="py-2.5 px-4 text-xs md:text-sm font-bold rounded-lg text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1">
-        Treino B - ondulatório
+              class="py-3.5 sm:py-4 md:py-5 px-4 text-xs sm:text-base md:text-lg font-black rounded-xl text-slate-400 hover:text-white transition-all flex items-center justify-center gap-2">
+        <span>⚡</span> Treino B - Ondulatório (3 Séries)
       </button>
     </div>
 
-    <div class="flex items-center justify-between text-xs text-slate-400 px-1 font-semibold">
-      <span id="subtituloTreino">Treino A seg e quinta</span>
+    <div class="flex items-center justify-between text-xs sm:text-sm text-slate-400 px-2 font-semibold">
+      <span id="subtituloTreino" class="text-amber-400 font-bold">Treino A (Segunda e Quinta)</span>
       <span id="dataHoje">Data: --/--/----</span>
     </div>
 
-    <!-- Barra de Ações -->
-    <div class="flex flex-wrap items-center gap-2">
-      <button type="button" id="btnNovoExercicio" 
-              class="bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-1 shadow transition-all">
-        <span class="text-base leading-none">+</span> Novo exercício
+    <!-- Barra de Ações Ampliada -->
+    <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+      <button type="button" onclick="adicionarNovoExercicio()" 
+              class="bg-blue-600 hover:bg-blue-500 active:scale-95 text-white text-xs sm:text-sm md:text-base font-black px-5 py-3 rounded-xl flex items-center gap-2 shadow-lg transition-all">
+        <span class="text-lg leading-none">+</span> Adicionar Novo Exercício
       </button>
-      <button type="button" onclick="exportarBackup()" class="card-dark hover:bg-[#1a2b56] text-slate-300 text-xs font-semibold px-3 py-2 rounded-lg">Exportar backup</button>
-      <button type="button" onclick="restaurarBackup()" class="card-dark hover:bg-[#1a2b56] text-slate-300 text-xs font-semibold px-3 py-2 rounded-lg">Restaurar backup</button>
-      <button type="button" onclick="window.print()" class="card-dark hover:bg-[#1a2b56] text-slate-300 text-xs font-semibold px-3 py-2 rounded-lg">Imprimir / PDF</button>
+      <button type="button" onclick="resetarConcluidos()" class="card-dark hover:bg-[#1a2b56] text-amber-300 text-xs sm:text-sm font-bold px-4 py-3 rounded-xl shadow">
+        🔄 Desmarcar Concluídos
+      </button>
+      <button type="button" onclick="exportarBackup()" class="card-dark hover:bg-[#1a2b56] text-slate-300 text-xs sm:text-sm font-semibold px-4 py-3 rounded-xl shadow">
+        Exportar backup
+      </button>
+      <button type="button" onclick="restaurarBackup()" class="card-dark hover:bg-[#1a2b56] text-slate-300 text-xs sm:text-sm font-semibold px-4 py-3 rounded-xl shadow">
+        Restaurar backup
+      </button>
     </div>
 
-    <!-- Volume & Descanso -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-      <div class="card-dark rounded-xl p-4 flex flex-col justify-between">
-        <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Volume feito / planejado</span>
-        <div class="my-2">
-          <span class="text-2xl md:text-3xl font-black text-white" id="displayVolume">0 / 14.256 kg</span>
+    <!-- Grid: Volume de Treino & TIMER GIGANTE (Yellow Box) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+      
+      <!-- Card Volume Ampliado -->
+      <div class="card-dark rounded-2xl md:rounded-3xl p-5 sm:p-7 flex flex-col justify-between border-2 border-blue-500/30 shadow-2xl">
+        <div class="flex items-center justify-between">
+          <span class="text-xs sm:text-sm md:text-base font-bold text-slate-400 uppercase tracking-wider">Volume de Treino (Carga x Reps)</span>
+          <span class="text-xs sm:text-sm bg-blue-600/30 text-blue-300 px-3 py-1 rounded-full font-bold">Progresso</span>
         </div>
-        <span class="text-xs text-slate-400" id="statusExerciciosFeitos">0 de 10 exercícios feitos hoje</span>
+        <div class="my-3 sm:my-4">
+          <span class="text-3xl sm:text-5xl md:text-6xl font-black text-white" id="displayVolume">0 / 0 kg</span>
+        </div>
+        <div class="flex items-center justify-between text-xs sm:text-sm md:text-base text-slate-300 border-t border-slate-800/80 pt-3">
+          <span id="statusExerciciosFeitos" class="font-bold">0 de 0 exercícios feitos</span>
+          <span class="text-emerald-400 font-black" id="porcentagemConcluido">0% concluído</span>
+        </div>
       </div>
 
-      <div class="card-dark rounded-xl p-4 flex flex-col justify-between">
+      <!-- Card TIMER PROFISSIONAL AMPLIADO (Yellow Box) -->
+      <div class="card-dark rounded-2xl md:rounded-3xl p-5 sm:p-7 flex flex-col justify-between border-2 border-amber-500/40 shadow-2xl bg-gradient-to-br from-[#131f3f] to-[#0f172e]">
         <div class="flex items-center justify-between">
-          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Descanso</span>
-          <span class="text-2xl md:text-3xl font-mono font-black text-amber-400" id="timerDisplay">01:00</span>
-        </div>
-        <div class="flex items-center justify-between gap-2 mt-3">
-          <select id="tempoDescansoSelect" class="input-dark text-xs font-bold rounded-lg px-2 py-1.5 focus:outline-none">
-            <option value="30">30 s</option>
-            <option value="45">45 s</option>
-            <option value="60" selected>60 s</option>
-            <option value="90">90 s</option>
-            <option value="120">120 s</option>
-          </select>
-          <div class="flex items-center gap-1.5">
-            <button type="button" onclick="iniciarTimer()" class="bg-blue-600 hover:bg-blue-700 text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold active:scale-90">▶</button>
-            <button type="button" onclick="pausarTimer()" class="card-dark hover:bg-slate-700 text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold active:scale-90">⏸</button>
-            <button type="button" onclick="resetarTimer()" class="card-dark hover:bg-slate-700 text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold active:scale-90">⏹</button>
+          <div class="flex items-center gap-2 sm:gap-3">
+            <span class="text-2xl sm:text-3xl">⏱️</span>
+            <div>
+              <span class="text-xs sm:text-sm font-extrabold text-amber-400 uppercase tracking-wider block">Cronômetro de Descanso</span>
+              <span class="text-[11px] sm:text-xs text-slate-400">Inicia automático ao marcar ✓</span>
+            </div>
+          </div>
+          <!-- Display Gigante do Timer -->
+          <div class="text-4xl sm:text-5xl md:text-6xl font-mono font-black text-amber-400 tracking-wider drop-shadow" id="timerDisplay">
+            01:00
           </div>
         </div>
-        <span class="text-[10px] text-slate-500 mt-2">Inicia ao marcar "Feito"</span>
+
+        <!-- Presets Rápidos com Botões Grandes de Toque -->
+        <div class="grid grid-cols-5 gap-1.5 sm:gap-2 my-3 sm:my-4">
+          <button type="button" onclick="definirTempoTimer(30)" id="preset_30" class="tempo-preset-btn py-2 sm:py-3 rounded-xl bg-[#0d172e] hover:bg-amber-500/20 text-xs sm:text-sm font-bold text-slate-300 transition-all border border-slate-700">30s</button>
+          <button type="button" onclick="definirTempoTimer(45)" id="preset_45" class="tempo-preset-btn py-2 sm:py-3 rounded-xl bg-[#0d172e] hover:bg-amber-500/20 text-xs sm:text-sm font-bold text-slate-300 transition-all border border-slate-700">45s</button>
+          <button type="button" onclick="definirTempoTimer(60)" id="preset_60" class="tempo-preset-btn py-2 sm:py-3 rounded-xl preset-active text-xs sm:text-sm transition-all border">60s</button>
+          <button type="button" onclick="definirTempoTimer(90)" id="preset_90" class="tempo-preset-btn py-2 sm:py-3 rounded-xl bg-[#0d172e] hover:bg-amber-500/20 text-xs sm:text-sm font-bold text-slate-300 transition-all border border-slate-700">90s</button>
+          <button type="button" onclick="definirTempoTimer(120)" id="preset_120" class="tempo-preset-btn py-2 sm:py-3 rounded-xl bg-[#0d172e] hover:bg-amber-500/20 text-xs sm:text-sm font-bold text-slate-300 transition-all border border-slate-700">2 min</button>
+        </div>
+
+        <!-- Controles Grandes do Timer (+15s / -15s / Iniciar / Pausar / Zerar) -->
+        <div class="grid grid-cols-12 gap-2 sm:gap-3">
+          <button type="button" onclick="ajustarTimerDelta(-15)" class="col-span-2 py-3 sm:py-3.5 bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-300 font-black text-xs sm:text-sm rounded-xl border border-slate-700">-15s</button>
+          <button type="button" onclick="iniciarTimer()" class="col-span-4 py-3 sm:py-3.5 bg-blue-600 hover:bg-blue-500 active:scale-95 text-white font-black text-xs sm:text-sm md:text-base rounded-xl flex items-center justify-center gap-1.5 shadow-lg">
+            <span>▶</span> INICIAR
+          </button>
+          <button type="button" onclick="pausarTimer()" class="col-span-2 py-3 sm:py-3.5 bg-slate-800 hover:bg-slate-700 active:scale-95 text-amber-300 font-black text-xs sm:text-sm rounded-xl border border-slate-700 flex items-center justify-center">
+            ⏸
+          </button>
+          <button type="button" onclick="resetarTimer()" class="col-span-2 py-3 sm:py-3.5 bg-slate-800 hover:bg-slate-700 active:scale-95 text-red-400 font-black text-xs sm:text-sm rounded-xl border border-slate-700 flex items-center justify-center">
+            ⏹
+          </button>
+          <button type="button" onclick="ajustarTimerDelta(15)" class="col-span-2 py-3 sm:py-3.5 bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-300 font-black text-xs sm:text-sm rounded-xl border border-slate-700">+15s</button>
+        </div>
       </div>
     </div>
 
-    <!-- Calculadora 1RM -->
-    <details class="card-dark rounded-xl p-3 text-xs">
-      <summary class="font-bold text-slate-300 cursor-pointer select-none">▶ Calculadora de 1RM (Epley)</summary>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3 pt-3 border-t border-slate-800">
+    <!-- Calculadora 1RM Ampliada -->
+    <details class="card-dark rounded-2xl p-4 sm:p-5 text-xs sm:text-sm shadow">
+      <summary class="font-bold text-slate-300 cursor-pointer select-none text-sm sm:text-base flex items-center gap-2">
+        <span>🧮</span> Calculadora de 1RM Estimada (Epley)
+      </summary>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-3 pt-3 border-t border-slate-800">
         <div>
-          <label class="text-[10px] text-slate-400 block mb-1">Carga levantada (kg):</label>
-          <input type="number" id="rmCarga" placeholder="Ex: 80" class="input-dark w-full rounded-lg px-2.5 py-1.5">
+          <label class="text-xs text-slate-400 block mb-1">Carga levantada (kg):</label>
+          <input type="number" id="rmCarga" placeholder="Ex: 80" class="input-dark w-full rounded-xl px-3 py-2 text-sm sm:text-base font-bold">
         </div>
         <div>
-          <label class="text-[10px] text-slate-400 block mb-1">Repetições realizadas:</label>
-          <input type="number" id="rmReps" placeholder="Ex: 8" class="input-dark w-full rounded-lg px-2.5 py-1.5">
+          <label class="text-xs text-slate-400 block mb-1">Repetições realizadas:</label>
+          <input type="number" id="rmReps" placeholder="Ex: 8" class="input-dark w-full rounded-xl px-3 py-2 text-sm sm:text-base font-bold">
         </div>
         <div class="flex flex-col justify-end">
-          <button type="button" onclick="calcular1RM()" class="bg-blue-600 text-white font-bold py-1.5 rounded-lg active:scale-95">Calcular 1RM</button>
+          <button type="button" onclick="calcular1RM()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 rounded-xl active:scale-95 shadow">
+            Calcular 1RM
+          </button>
         </div>
       </div>
-      <p class="mt-2 text-emerald-400 font-bold" id="resultado1RM"></p>
+      <p class="mt-3 text-emerald-400 font-black text-sm sm:text-base" id="resultado1RM"></p>
     </details>
 
-    <!-- Exercícios -->
-    <div id="containerExercicios" class="space-y-3"></div>
+    <!-- Lista de Exercícios (Purple Box - Totalmente Editável & Adicionar Campos) -->
+    <div id="containerExercicios" class="space-y-4"></div>
+
+    <!-- Botão Grande no Final da Lista -->
+    <div class="pt-2">
+      <button type="button" onclick="adicionarNovoExercicio()" 
+              class="w-full py-4 sm:py-5 bg-gradient-to-r from-blue-700 to-blue-600 hover:from-blue-600 hover:to-blue-500 active:scale-98 text-white font-black text-sm sm:text-lg rounded-2xl sm:rounded-3xl shadow-2xl flex items-center justify-center gap-2 border border-blue-400/40">
+        <span class="text-2xl leading-none">+</span> ADICIONAR NOVO EXERCÍCIO AO TREINO
+      </button>
+    </div>
   </div>
 
   <!-- ========================================== -->
@@ -215,46 +261,46 @@
   <!-- ========================================== -->
   <div id="telaNutricao" class="hidden max-w-xl md:max-w-2xl mx-auto p-4 sm:p-6 space-y-4">
     <header class="flex items-center justify-between py-2">
-      <button type="button" onclick="navegarPara('telaHome')" class="text-xs sm:text-sm bg-[#131f3f] px-3.5 py-2 rounded-xl border border-slate-700 text-emerald-300 font-bold active:scale-95">
+      <button type="button" onclick="navegarPara('telaHome')" class="text-xs sm:text-sm bg-[#131f3f] px-4 py-2.5 rounded-xl border border-slate-700 text-emerald-300 font-bold active:scale-95 shadow">
         ⬅ Início
       </button>
       <div class="flex items-center gap-3">
-        <img src="./icone_nutricao.jpg?v=2" alt="Nutrição" class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl border-2 border-emerald-400/60 object-cover shadow-lg">
+        <img src="./icone_nutricao.jpg?v=3" alt="Nutrição" class="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl border-2 border-emerald-400/60 object-cover shadow-lg">
         <div>
-          <h1 class="text-lg sm:text-xl font-bold text-white">Plano de Nutrição</h1>
-          <span class="text-[10px] sm:text-xs text-emerald-400 font-bold tracking-wider">COMBUSTÍVEL DIÁRIO</span>
+          <h1 class="text-lg sm:text-2xl font-black text-white">Plano de Nutrição</h1>
+          <span class="text-[10px] sm:text-xs text-emerald-400 font-extrabold tracking-wider">COMBUSTÍVEL DIÁRIO</span>
         </div>
       </div>
-      <span class="text-xs bg-emerald-900/60 px-3 py-1.5 rounded-xl border border-emerald-500/30 font-semibold text-emerald-300">Hoje</span>
+      <span class="text-xs sm:text-sm bg-emerald-900/60 px-3 py-1.5 rounded-xl border border-emerald-500/30 font-semibold text-emerald-300">Hoje</span>
     </header>
 
-    <div class="card-dark rounded-2xl p-4 flex items-center justify-between">
+    <div class="card-dark rounded-2xl sm:rounded-3xl p-5 flex items-center justify-between shadow-xl">
       <div>
-        <span class="text-xs font-bold text-slate-400 uppercase">💧 Hidratação Diária</span>
-        <div class="text-2xl font-black text-blue-400 mt-1"><span id="contadorAgua">0</span> <span class="text-xs text-slate-400">/ 8 copos (2L)</span></div>
+        <span class="text-xs sm:text-sm font-bold text-slate-400 uppercase">💧 Hidratação Diária</span>
+        <div class="text-2xl sm:text-3xl font-black text-blue-400 mt-1"><span id="contadorAgua">0</span> <span class="text-xs sm:text-sm text-slate-400">/ 8 copos (2L)</span></div>
       </div>
       <div class="flex items-center gap-2">
-        <button type="button" onclick="alterarAgua(-1)" class="w-10 h-10 rounded-xl bg-slate-800 text-white font-bold active:scale-90 text-lg">-</button>
-        <button type="button" onclick="alterarAgua(1)" class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold active:scale-90 text-lg shadow">+</button>
+        <button type="button" onclick="alterarAgua(-1)" class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-slate-800 text-white font-black active:scale-90 text-xl shadow">-</button>
+        <button type="button" onclick="alterarAgua(1)" class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-600 text-white font-black active:scale-90 text-xl shadow">+</button>
       </div>
     </div>
 
-    <div class="space-y-3">
-      <div class="card-dark rounded-2xl p-4">
-        <span class="font-bold text-sm text-slate-200 block mb-2">☕ Café da Manhã (07:30)</span>
-        <textarea rows="2" class="input-dark w-full rounded-xl p-2.5 text-xs text-slate-200" placeholder="Ex: 3 ovos mexidos, café preto..."></textarea>
+    <div class="space-y-4">
+      <div class="card-dark rounded-2xl p-4 sm:p-5 shadow">
+        <span class="font-black text-sm sm:text-base text-slate-200 block mb-2">☕ Café da Manhã (07:30)</span>
+        <textarea rows="2" class="input-dark w-full rounded-xl p-3 text-xs sm:text-sm text-slate-200" placeholder="Ex: 3 ovos mexidos, café preto..."></textarea>
       </div>
-      <div class="card-dark rounded-2xl p-4">
-        <span class="font-bold text-sm text-slate-200 block mb-2">🍛 Almoço (12:30)</span>
-        <textarea rows="2" class="input-dark w-full rounded-xl p-2.5 text-xs text-slate-200" placeholder="Ex: 150g frango, arroz, legumes..."></textarea>
+      <div class="card-dark rounded-2xl p-4 sm:p-5 shadow">
+        <span class="font-black text-sm sm:text-base text-slate-200 block mb-2">🍛 Almoço (12:30)</span>
+        <textarea rows="2" class="input-dark w-full rounded-xl p-3 text-xs sm:text-sm text-slate-200" placeholder="Ex: 150g frango, arroz, legumes..."></textarea>
       </div>
-      <div class="card-dark rounded-2xl p-4">
-        <span class="font-bold text-sm text-slate-200 block mb-2">🍎 Lanche da Tarde (16:30)</span>
-        <textarea rows="2" class="input-dark w-full rounded-xl p-2.5 text-xs text-slate-200" placeholder="Ex: Whey protein, fruta..."></textarea>
+      <div class="card-dark rounded-2xl p-4 sm:p-5 shadow">
+        <span class="font-black text-sm sm:text-base text-slate-200 block mb-2">🍎 Lanche da Tarde (16:30)</span>
+        <textarea rows="2" class="input-dark w-full rounded-xl p-3 text-xs sm:text-sm text-slate-200" placeholder="Ex: Whey protein, fruta..."></textarea>
       </div>
-      <div class="card-dark rounded-2xl p-4">
-        <span class="font-bold text-sm text-slate-200 block mb-2">🥗 Jantar (20:30)</span>
-        <textarea rows="2" class="input-dark w-full rounded-xl p-2.5 text-xs text-slate-200" placeholder="Ex: Patinho moído, salada..."></textarea>
+      <div class="card-dark rounded-2xl p-4 sm:p-5 shadow">
+        <span class="font-black text-sm sm:text-base text-slate-200 block mb-2">🥗 Jantar (20:30)</span>
+        <textarea rows="2" class="input-dark w-full rounded-xl p-3 text-xs sm:text-sm text-slate-200" placeholder="Ex: Patinho moído, salada..."></textarea>
       </div>
     </div>
   </div>
@@ -263,46 +309,35 @@
     let modoTreinoAtual = 'A';
     let timerInterval = null;
     let timerSegundos = 60;
+    let tempoPadraoDescanso = 60;
     let coposAgua = 0;
 
-    const dadosTreinoA = [
-      { id: 1, nome: "Supino inclinado", reps: "4 x 6 a 10", carga: 80, feito: false },
-      { id: 2, nome: "Crucifixo inclinado halter ou no Cross", reps: "4 x 6 a 10", carga: 26, feito: false },
-      { id: 3, nome: "Desenvolvimento", reps: "4 x 6 a 10", carga: 60, feito: false },
-      { id: 4, nome: "Puxador fechado", reps: "4 x 6 a 10", carga: 70, feito: false }
+    // Dados Iniciais do Treino A (Normal / Carga Fixa)
+    let dadosTreinoA = [
+      { id: 1, nome: "Supino Inclinado", reps: "4 x 6 a 10", carga: 80, feito: false, obs: "" },
+      { id: 2, nome: "Crucifixo Inclinado Halter ou Cross", reps: "4 x 6 a 10", carga: 26, feito: false, obs: "" },
+      { id: 3, nome: "Desenvolvimento", reps: "4 x 6 a 10", carga: 60, feito: false, obs: "" },
+      { id: 4, nome: "Puxador Fechado", reps: "4 x 6 a 10", carga: 70, feito: false, obs: "" },
+      { id: 5, nome: "Remada Curvada", reps: "4 x 6 a 10", carga: 70, feito: false, obs: "" },
+      { id: 6, nome: "Tríceps Pulley ou Corda", reps: "4 x 6 a 10", carga: 40, feito: false, obs: "" },
+      { id: 7, nome: "Rosca Direta Halter", reps: "4 x 6 a 10", carga: 18, feito: false, obs: "" },
+      { id: 8, nome: "Agachamento Smith", reps: "4 x 6 a 10", carga: 90, feito: false, obs: "" },
+      { id: 9, nome: "Leg Press 45°", reps: "4 x 6 a 10", carga: 220, feito: false, obs: "" },
+      { id: 10, nome: "Mesa Flexora", reps: "4 x 6 a 10", carga: 55, feito: false, obs: "" }
     ];
 
-    const dadosTreinoB = [
-      {
-        id: 101,
-        nome: "Supino inclinado",
-        feito: false,
-        series: [
-          { r: 18, c: 30 },
-          { r: 15, c: 40 },
-          { r: 12, c: 50 }
-        ]
-      },
-      {
-        id: 102,
-        nome: "Crucifixo inclinado halter ou no Cross",
-        feito: false,
-        series: [
-          { r: 18, c: 12 },
-          { r: 15, c: 14 },
-          { r: 12, c: 16 }
-        ]
-      },
-      {
-        id: 103,
-        nome: "Desenvolvimento",
-        feito: false,
-        series: [
-          { r: 18, c: 20 },
-          { r: 15, c: 25 },
-          { r: 12, c: 30 }
-        ]
-      }
+    // Dados Iniciais do Treino B (Ondulatório / 3 Séries com Repetições Variadas)
+    let dadosTreinoB = [
+      { id: 101, nome: "Supino Inclinado (Ondulatório)", feito: false, obs: "", series: [{ r: 18, c: 60 }, { r: 15, c: 70 }, { r: 12, c: 80 }] },
+      { id: 102, nome: "Crucifixo Inclinado (Ondulatório)", feito: false, obs: "", series: [{ r: 18, c: 18 }, { r: 15, c: 22 }, { r: 12, c: 26 }] },
+      { id: 103, nome: "Desenvolvimento (Ondulatório)", feito: false, obs: "", series: [{ r: 18, c: 40 }, { r: 15, c: 50 }, { r: 12, c: 60 }] },
+      { id: 104, nome: "Puxador Fechado (Ondulatório)", feito: false, obs: "", series: [{ r: 18, c: 50 }, { r: 15, c: 60 }, { r: 12, c: 70 }] },
+      { id: 105, nome: "Remada Curvada (Ondulatório)", feito: false, obs: "", series: [{ r: 18, c: 50 }, { r: 15, c: 60 }, { r: 12, c: 70 }] },
+      { id: 106, nome: "Tríceps Corda (Ondulatório)", feito: false, obs: "", series: [{ r: 18, c: 25 }, { r: 15, c: 30 }, { r: 12, c: 35 }] },
+      { id: 107, nome: "Rosca Direta (Ondulatório)", feito: false, obs: "", series: [{ r: 18, c: 12 }, { r: 15, c: 15 }, { r: 12, c: 18 }] },
+      { id: 108, nome: "Agachamento Smith (Ondulatório)", feito: false, obs: "", series: [{ r: 18, c: 60 }, { r: 15, c: 75 }, { r: 12, c: 90 }] },
+      { id: 109, nome: "Leg Press 45° (Ondulatório)", feito: false, obs: "", series: [{ r: 18, c: 160 }, { r: 15, c: 190 }, { r: 12, c: 220 }] },
+      { id: 110, nome: "Mesa Flexora (Ondulatório)", feito: false, obs: "", series: [{ r: 18, c: 35 }, { r: 15, c: 45 }, { r: 12, c: 55 }] }
     ];
 
     function navegarPara(idTela) {
@@ -320,13 +355,13 @@
       const subtitulo = document.getElementById('subtituloTreino');
 
       if (modo === 'A') {
-        tabA.className = "py-2.5 px-4 text-xs md:text-sm font-bold rounded-lg bg-blue-600 text-white shadow transition-all flex items-center justify-center gap-1";
-        tabB.className = "py-2.5 px-4 text-xs md:text-sm font-bold rounded-lg text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1";
-        subtitulo.textContent = "Treino A seg e quinta";
+        tabA.className = "py-3.5 sm:py-4 md:py-5 px-4 text-xs sm:text-base md:text-lg font-black rounded-xl bg-blue-600 text-white shadow transition-all flex items-center justify-center gap-2";
+        tabB.className = "py-3.5 sm:py-4 md:py-5 px-4 text-xs sm:text-base md:text-lg font-black rounded-xl text-slate-400 hover:text-white transition-all flex items-center justify-center gap-2";
+        subtitulo.textContent = "Treino A (Segunda e Quinta) - Cargas Fixas 4 x 6 a 10";
       } else {
-        tabB.className = "py-2.5 px-4 text-xs md:text-sm font-bold rounded-lg bg-blue-600 text-white shadow transition-all flex items-center justify-center gap-1";
-        tabA.className = "py-2.5 px-4 text-xs md:text-sm font-bold rounded-lg text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1";
-        subtitulo.textContent = "Ondulatório Treino B seg e quinta";
+        tabB.className = "py-3.5 sm:py-4 md:py-5 px-4 text-xs sm:text-base md:text-lg font-black rounded-xl bg-blue-600 text-white shadow transition-all flex items-center justify-center gap-2";
+        tabA.className = "py-3.5 sm:py-4 md:py-5 px-4 text-xs sm:text-base md:text-lg font-black rounded-xl text-slate-400 hover:text-white transition-all flex items-center justify-center gap-2";
+        subtitulo.textContent = "Treino B Ondulatório (Segunda e Quinta) - 3 Séries Variadas";
       }
 
       renderizarExercicios();
@@ -341,84 +376,126 @@
         dadosTreinoA.forEach((ex, idx) => {
           const proxima = Math.round(ex.carga * (1 + pct));
           const div = document.createElement('div');
-          div.className = `card-dark rounded-xl p-3 md:p-4 transition-all ${ex.feito ? 'opacity-60 border-emerald-500/50' : ''}`;
+          div.className = `card-dark rounded-2xl p-4 sm:p-6 transition-all border-2 ${ex.feito ? 'opacity-65 border-emerald-500/60 bg-[#0e243a]' : 'border-slate-800 shadow-xl'}`;
           div.innerHTML = `
-            <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2 mb-3">
+            <!-- Topo do Exercício: Nome, Feito e Ações -->
+            <div class="flex items-center justify-between gap-3 border-b border-slate-800 pb-3 mb-4">
               <div class="flex items-center gap-3 flex-1">
                 <input type="checkbox" ${ex.feito ? 'checked' : ''} onchange="toggleFeitoA(${idx})" 
-                       class="w-5 h-5 rounded bg-slate-900 border-slate-600 text-blue-600 focus:ring-0 cursor-pointer">
+                       class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-slate-900 border-slate-600 text-blue-600 focus:ring-0 cursor-pointer">
                 <input type="text" value="${ex.nome}" onchange="dadosTreinoA[${idx}].nome = this.value; salvarLocal();"
-                       class="font-bold text-white text-sm md:text-base bg-transparent focus:outline-none w-full">
+                       class="font-black text-white text-base sm:text-xl md:text-2xl bg-transparent focus:outline-none w-full border-b border-transparent focus:border-blue-500" placeholder="Nome do exercício">
               </div>
-              <div class="flex items-center gap-1.5">
-                <button type="button" onclick="toggleFeitoA(${idx})" class="p-2 rounded-lg ${ex.feito ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-slate-400 hover:text-white'}">✓</button>
-                <button type="button" onclick="removerExercicioA(${idx})" class="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-red-400">✕</button>
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="toggleFeitoA(${idx})" 
+                        class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl font-black text-xs sm:text-sm flex items-center gap-1.5 transition-all active:scale-95 ${ex.feito ? 'bg-emerald-600 text-white shadow-lg' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'}">
+                  ${ex.feito ? '✓ Concluído' : 'Concluir'}
+                </button>
+                <button type="button" onclick="removerExercicioA(${idx})" title="Remover Exercício"
+                        class="p-2 sm:p-2.5 rounded-xl bg-slate-800 hover:bg-red-900/60 text-slate-400 hover:text-red-300 active:scale-90 font-bold transition-all">
+                  ✕
+                </button>
               </div>
             </div>
 
-            <div class="grid grid-cols-12 gap-2 items-center">
-              <div class="col-span-5">
-                <span class="text-[10px] text-slate-400 block mb-0.5">Reps</span>
+            <!-- Campos: Repetições, Carga Atual e Próxima Carga -->
+            <div class="grid grid-cols-12 gap-3 sm:gap-4 items-center">
+              <div class="col-span-5 sm:col-span-4">
+                <span class="text-xs sm:text-sm font-bold text-slate-400 block mb-1">Séries / Reps</span>
                 <input type="text" value="${ex.reps}" onchange="dadosTreinoA[${idx}].reps = this.value; salvarLocal();"
-                       class="input-dark w-full rounded-lg px-2.5 py-1.5 text-xs text-slate-200">
+                       class="input-dark w-full rounded-xl px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-base font-bold text-slate-200">
               </div>
 
-              <div class="col-span-4">
-                <span class="text-[10px] text-slate-400 block mb-0.5">Atual (kg)</span>
+              <div class="col-span-4 sm:col-span-4">
+                <span class="text-xs sm:text-sm font-bold text-slate-400 block mb-1">Carga Atual (kg)</span>
                 <input type="number" step="0.5" value="${ex.carga}" onchange="dadosTreinoA[${idx}].carga = parseFloat(this.value)||0; renderizarExercicios();"
-                       class="input-dark w-full rounded-lg px-2.5 py-1.5 text-xs font-bold text-white">
+                       class="input-dark w-full rounded-xl px-3 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-lg font-black text-white">
               </div>
 
-              <div class="col-span-3">
-                <span class="text-[10px] text-slate-400 block mb-0.5">Próxima</span>
-                <div class="bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 rounded-lg py-1.5 px-2 text-center text-xs font-black">
+              <div class="col-span-3 sm:col-span-4">
+                <span class="text-xs sm:text-sm font-bold text-slate-400 block mb-1">Próxima (+${(pct*100).toFixed(1)}%)</span>
+                <div class="bg-emerald-950/90 border border-emerald-500/50 text-emerald-400 rounded-xl py-2.5 sm:py-3 px-3 text-center text-sm sm:text-lg font-black shadow">
                   ${proxima} kg
                 </div>
               </div>
+            </div>
+
+            <!-- Campo Extra: Observações / Anotações do Exercício -->
+            <div class="mt-3 pt-3 border-t border-slate-800/60">
+              <input type="text" value="${ex.obs || ''}" onchange="dadosTreinoA[${idx}].obs = this.value; salvarLocal();"
+                     class="input-dark w-full rounded-xl px-3 py-2 text-xs sm:text-sm text-slate-400 placeholder-slate-600" 
+                     placeholder="+ Adicionar anotação (ex: banco inclinado 30°, pegada aberta, drop-set...)">
             </div>
           `;
           container.appendChild(div);
         });
       } else {
+        // Modo Treino B Ondulatório
         dadosTreinoB.forEach((ex, idx) => {
           const div = document.createElement('div');
-          div.className = `card-dark rounded-xl p-3 md:p-4 transition-all ${ex.feito ? 'opacity-60 border-emerald-500/50' : ''}`;
+          div.className = `card-dark rounded-2xl p-4 sm:p-6 transition-all border-2 ${ex.feito ? 'opacity-65 border-emerald-500/60 bg-[#0e243a]' : 'border-slate-800 shadow-xl'}`;
           
           let seriesHtml = '';
           ex.series.forEach((s, sIdx) => {
             const proxCarga = Math.round(s.c * (1 + pct));
             seriesHtml += `
-              <div class="bg-[#0d172e] p-2 rounded-lg border border-slate-800/80">
-                <span class="text-[10px] text-slate-400 block mb-1 text-center font-bold">${sIdx + 1}ª série (reps / kg)</span>
-                <div class="grid grid-cols-2 gap-1 mb-1.5">
-                  <input type="number" value="${s.r}" onchange="dadosTreinoB[${idx}].series[${sIdx}].r = parseInt(this.value)||0; salvarLocal();"
-                         class="input-dark rounded p-1 text-center text-xs text-slate-300">
-                  <input type="number" step="0.5" value="${s.c}" onchange="dadosTreinoB[${idx}].series[${sIdx}].c = parseFloat(this.value)||0; renderizarExercicios();"
-                         class="input-dark rounded p-1 text-center text-xs font-bold text-white">
+              <div class="bg-[#0d172e] p-3 sm:p-4 rounded-xl border border-slate-800/90 shadow">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs sm:text-sm text-amber-400 font-extrabold">${sIdx + 1}ª Série</span>
+                  ${ex.series.length > 1 ? `<button type="button" onclick="removerSerieB(${idx}, ${sIdx})" class="text-[10px] text-slate-500 hover:text-red-400">remover</button>` : ''}
                 </div>
-                <div class="bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 text-center py-1 rounded text-xs font-black">
-                  ${proxCarga} kg
+                <div class="grid grid-cols-2 gap-2 mb-2">
+                  <div>
+                    <span class="text-[10px] text-slate-400 block mb-0.5">Reps</span>
+                    <input type="number" value="${s.r}" onchange="dadosTreinoB[${idx}].series[${sIdx}].r = parseInt(this.value)||0; salvarLocal();"
+                           class="input-dark w-full rounded-lg p-2 text-center text-xs sm:text-base font-bold text-slate-200">
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-slate-400 block mb-0.5">Carga (kg)</span>
+                    <input type="number" step="0.5" value="${s.c}" onchange="dadosTreinoB[${idx}].series[${sIdx}].c = parseFloat(this.value)||0; renderizarExercicios();"
+                           class="input-dark w-full rounded-lg p-2 text-center text-xs sm:text-base font-black text-white">
+                  </div>
+                </div>
+                <div class="bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 text-center py-1.5 rounded-lg text-xs sm:text-sm font-black">
+                  Próx: ${proxCarga} kg
                 </div>
               </div>
             `;
           });
 
           div.innerHTML = `
-            <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2 mb-3">
+            <div class="flex items-center justify-between gap-3 border-b border-slate-800 pb-3 mb-4">
               <div class="flex items-center gap-3 flex-1">
                 <input type="checkbox" ${ex.feito ? 'checked' : ''} onchange="toggleFeitoB(${idx})" 
-                       class="w-5 h-5 rounded bg-slate-900 border-slate-600 text-blue-600 focus:ring-0 cursor-pointer">
+                       class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-slate-900 border-slate-600 text-blue-600 focus:ring-0 cursor-pointer">
                 <input type="text" value="${ex.nome}" onchange="dadosTreinoB[${idx}].nome = this.value; salvarLocal();"
-                       class="font-bold text-white text-sm md:text-base bg-transparent focus:outline-none w-full">
+                       class="font-black text-white text-base sm:text-xl md:text-2xl bg-transparent focus:outline-none w-full border-b border-transparent focus:border-blue-500" placeholder="Nome do exercício">
               </div>
-              <div class="flex items-center gap-1.5">
-                <button type="button" onclick="toggleFeitoB(${idx})" class="p-2 rounded-lg ${ex.feito ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-slate-400 hover:text-white'}">✓</button>
-                <button type="button" onclick="removerExercicioB(${idx})" class="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-red-400">✕</button>
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="toggleFeitoB(${idx})" 
+                        class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl font-black text-xs sm:text-sm flex items-center gap-1.5 transition-all active:scale-95 ${ex.feito ? 'bg-emerald-600 text-white shadow-lg' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'}">
+                  ${ex.feito ? '✓ Concluído' : 'Concluir'}
+                </button>
+                <button type="button" onclick="removerExercicioB(${idx})" title="Remover Exercício"
+                        class="p-2 sm:p-2.5 rounded-xl bg-slate-800 hover:bg-red-900/60 text-slate-400 hover:text-red-300 active:scale-90 font-bold transition-all">
+                  ✕
+                </button>
               </div>
             </div>
 
-            <div class="grid grid-cols-3 gap-2">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
               ${seriesHtml}
+            </div>
+
+            <!-- Adicionar Série e Campo de Observação -->
+            <div class="flex items-center justify-between gap-3 pt-2 border-t border-slate-800/60">
+              <input type="text" value="${ex.obs || ''}" onchange="dadosTreinoB[${idx}].obs = this.value; salvarLocal();"
+                     class="input-dark flex-1 rounded-xl px-3 py-2 text-xs sm:text-sm text-slate-400 placeholder-slate-600" 
+                     placeholder="+ Adicionar anotação...">
+              <button type="button" onclick="adicionarSerieB(${idx})" 
+                      class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-blue-400 font-bold text-xs sm:text-sm rounded-xl border border-slate-700 active:scale-95">
+                + Nova Série
+              </button>
             </div>
           `;
           container.appendChild(div);
@@ -458,8 +535,11 @@
         });
       }
 
-      document.getElementById('displayVolume').textContent = `${volumeFeito.toLocaleString('pt-BR')} / ${volumePlanejado.toLocaleString('pt-BR')} kg`;
+      document.getElementById('displayVolume').textContent = `${Math.round(volumeFeito).toLocaleString('pt-BR')} / ${Math.round(volumePlanejado).toLocaleString('pt-BR')} kg`;
       document.getElementById('statusExerciciosFeitos').textContent = `${feitosCount} de ${totalCount} exercícios feitos hoje`;
+      
+      const pctConcluido = totalCount > 0 ? Math.round((feitosCount / totalCount) * 100) : 0;
+      document.getElementById('porcentagemConcluido').textContent = `${pctConcluido}% concluído`;
     }
 
     function toggleFeitoA(idx) {
@@ -475,35 +555,85 @@
     }
 
     function removerExercicioA(idx) {
-      dadosTreinoA.splice(idx, 1);
-      renderizarExercicios();
+      if (confirm(`Deseja remover o exercício "${dadosTreinoA[idx].nome}"?`)) {
+        dadosTreinoA.splice(idx, 1);
+        renderizarExercicios();
+      }
     }
 
     function removerExercicioB(idx) {
-      dadosTreinoB.splice(idx, 1);
+      if (confirm(`Deseja remover o exercício "${dadosTreinoB[idx].nome}"?`)) {
+        dadosTreinoB.splice(idx, 1);
+        renderizarExercicios();
+      }
+    }
+
+    function adicionarSerieB(idx) {
+      const ultima = dadosTreinoB[idx].series[dadosTreinoB[idx].series.length - 1] || { r: 10, c: 20 };
+      dadosTreinoB[idx].series.push({ r: Math.max(6, ultima.r - 2), c: ultima.c + 5 });
       renderizarExercicios();
     }
 
-    document.getElementById('btnNovoExercicio').addEventListener('click', () => {
+    function removerSerieB(idx, sIdx) {
+      if (dadosTreinoB[idx].series.length > 1) {
+        dadosTreinoB[idx].series.splice(sIdx, 1);
+        renderizarExercicios();
+      }
+    }
+
+    function adicionarNovoExercicio() {
+      const nomePadrao = modoTreinoAtual === 'A' ? `Novo Exercício ${dadosTreinoA.length + 1}` : `Novo Exercício Ondulatório ${dadosTreinoB.length + 1}`;
       if (modoTreinoAtual === 'A') {
-        dadosTreinoA.push({ id: Date.now(), nome: "Novo Exercício", reps: "4 x 10", carga: 20, feito: false });
+        dadosTreinoA.push({ id: Date.now(), nome: nomePadrao, reps: "4 x 10", carga: 20, feito: false, obs: "" });
       } else {
-        dadosTreinoB.push({ id: Date.now(), nome: "Novo Exercício Ondulatório", feito: false, series: [{ r: 15, c: 20 }, { r: 12, c: 25 }, { r: 10, c: 30 }] });
+        dadosTreinoB.push({ id: Date.now(), nome: nomePadrao, feito: false, obs: "", series: [{ r: 18, c: 15 }, { r: 15, c: 20 }, { r: 12, c: 25 }] });
       }
       renderizarExercicios();
-    });
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
 
+    function resetarConcluidos() {
+      if (modoTreinoAtual === 'A') {
+        dadosTreinoA.forEach(e => e.feito = false);
+      } else {
+        dadosTreinoB.forEach(e => e.feito = false);
+      }
+      renderizarExercicios();
+    }
+
+    // ==========================================
+    // CRONÔMETRO DE DESCANSO PROFISSIONAL
+    // ==========================================
     function formatarTempo(segundos) {
       const m = Math.floor(segundos / 60).toString().padStart(2, '0');
       const s = (segundos % 60).toString().padStart(2, '0');
       return `${m}:${s}`;
     }
 
+    function definirTempoTimer(seg) {
+      tempoPadraoDescanso = seg;
+      timerSegundos = seg;
+      document.getElementById('timerDisplay').textContent = formatarTempo(timerSegundos);
+
+      // Atualiza botões visuais
+      document.querySelectorAll('.tempo-preset-btn').forEach(btn => {
+        btn.className = "tempo-preset-btn py-2 sm:py-3 rounded-xl bg-[#0d172e] hover:bg-amber-500/20 text-xs sm:text-sm font-bold text-slate-300 transition-all border border-slate-700";
+      });
+      const ativo = document.getElementById(`preset_${seg}`);
+      if (ativo) {
+        ativo.className = "tempo-preset-btn py-2 sm:py-3 rounded-xl preset-active text-xs sm:text-sm transition-all border";
+      }
+    }
+
+    function ajustarTimerDelta(delta) {
+      timerSegundos = Math.max(5, timerSegundos + delta);
+      document.getElementById('timerDisplay').textContent = formatarTempo(timerSegundos);
+    }
+
     function iniciarTimer() {
       pausarTimer();
-      const select = document.getElementById('tempoDescansoSelect');
-      if (timerSegundos <= 0 || timerSegundos === parseInt(select.value)) {
-        timerSegundos = parseInt(select.value);
+      if (timerSegundos <= 0) {
+        timerSegundos = tempoPadraoDescanso;
       }
       document.getElementById('timerDisplay').textContent = formatarTempo(timerSegundos);
 
@@ -512,7 +642,16 @@
         document.getElementById('timerDisplay').textContent = formatarTempo(timerSegundos);
         if (timerSegundos <= 0) {
           clearInterval(timerInterval);
-          if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+          if (navigator.vibrate) navigator.vibrate([300, 150, 300, 150, 500]);
+          try {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = audioCtx.createOscillator();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+            osc.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.6);
+          } catch(e) {}
         }
       }, 1000);
     }
@@ -521,12 +660,9 @@
 
     function resetarTimer() {
       pausarTimer();
-      const select = document.getElementById('tempoDescansoSelect');
-      timerSegundos = parseInt(select.value);
+      timerSegundos = tempoPadraoDescanso;
       document.getElementById('timerDisplay').textContent = formatarTempo(timerSegundos);
     }
-
-    document.getElementById('tempoDescansoSelect').addEventListener('change', resetarTimer);
 
     function calcular1RM() {
       const carga = parseFloat(document.getElementById('rmCarga').value);
@@ -555,11 +691,15 @@
       const p = localStorage.getItem('treino_pct');
       const agua = localStorage.getItem('agua_hoje');
 
-      if (a) dadosTreinoA.splice(0, dadosTreinoA.length, ...JSON.parse(a));
-      if (b) dadosTreinoB.splice(0, dadosTreinoB.length, ...JSON.parse(b));
+      if (a) {
+        try { dadosTreinoA = JSON.parse(a); } catch(e){}
+      }
+      if (b) {
+        try { dadosTreinoB = JSON.parse(b); } catch(e){}
+      }
       if (p) document.getElementById('porcentagem').value = p;
       if (agua) {
-        coposAgua = parseInt(agua);
+        coposAgua = parseInt(agua) || 0;
         document.getElementById('contadorAgua').textContent = coposAgua;
       }
     }
@@ -584,8 +724,8 @@
         reader.onload = (ev) => {
           try {
             const data = JSON.parse(ev.target.result);
-            if (data.dadosTreinoA) dadosTreinoA.splice(0, dadosTreinoA.length, ...data.dadosTreinoA);
-            if (data.dadosTreinoB) dadosTreinoB.splice(0, dadosTreinoB.length, ...data.dadosTreinoB);
+            if (data.dadosTreinoA) dadosTreinoA = data.dadosTreinoA;
+            if (data.dadosTreinoB) dadosTreinoB = data.dadosTreinoB;
             renderizarExercicios();
             alert("Backup restaurado com sucesso!");
           } catch(err) {
@@ -600,9 +740,9 @@
     document.querySelectorAll('.dia-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.dia-btn').forEach(b => {
-          b.className = "dia-btn flex-1 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all";
+          b.className = "dia-btn flex-1 py-3 sm:py-4 text-xs sm:text-base md:text-lg font-black rounded-xl text-slate-400 hover:text-white transition-all";
         });
-        this.className = "dia-btn flex-1 py-2 text-xs font-bold rounded-lg bg-blue-600 text-white transition-all";
+        this.className = "dia-btn flex-1 py-3 sm:py-4 text-xs sm:text-base md:text-lg font-black rounded-xl bg-blue-600 text-white shadow transition-all";
       });
     });
 
@@ -613,7 +753,7 @@
     carregarLocal();
     renderizarExercicios();
 
-    // Auto-atualização de cache para novas versões
+    // Auto-atualização de cache
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').then((reg) => {
         reg.update();
